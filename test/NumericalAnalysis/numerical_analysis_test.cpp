@@ -34,7 +34,7 @@ TEST(NumericalAnalysisTest, NewtonRaphsonTest) {
     // 誤差の閾値
     const double epsilon = 10e-5;
     /*
-     * 入力関数(NewtonRaphson_NumericDerivativeTestの入力関数)とその微分関数
+     * 入力関数とその微分関数
      * df0  : 0.5x^4 - 2.4x^3 + 2.82x^2 - 14.956x - 9.6182
      * df1  : -4.2sin(x) - 1.7
      * df2  : 4.6 + 2x - 1 / x*ln^2(x)
@@ -65,7 +65,7 @@ TEST(NumericalAnalysisTest, NewtonRaphson_NumericDerivativeTest) {
     // 誤差の閾値
     const double epsilon = 10e-5;
     /*
-     * 入力関数
+     * 入力関数 (NewtonRaphsonTestの入力関数)
      * f0   : 0.1(x - 1.2)^5 - 0.5(x + 3.1)^3 - 1.1(x - 0.3)^2 + 3.1(x + 2.0)
      * f1   : 4.2cos(x) - 1.7x
      * f2   : 1 / ln(x) + (x + 2.3)^2
@@ -83,4 +83,30 @@ TEST(NumericalAnalysisTest, NewtonRaphson_NumericDerivativeTest) {
     EXPECT_LT(std::abs(newton_raphson(0  , f1) - (1.10644)) , epsilon);
     EXPECT_LT(std::abs(newton_raphson(0.9, f2) - (0.90737)) , epsilon);
     EXPECT_LT(std::abs(newton_raphson(2  , f3) - (1.84359)) , epsilon);
+}
+
+TEST(NumericalAnalysisTest, BisectionMethodTest) {
+    using namespace numerical_analysis;
+    // 誤差の閾値
+    const double epsilon = 10e-5;
+    /*
+     * 入力関数 (NewtonRaphsonTestの入力関数)
+     * f0   : 0.1(x - 1.2)^5 - 0.5(x + 3.1)^3 - 1.1(x - 0.3)^2 + 3.1(x + 2.0)
+     * f1   : 4.2cos(x) - 1.7x
+     * f2   : 1 / ln(x) + (x + 2.3)^2
+     * f3   : log((π^e)^x) - π
+     */
+    const auto f0  = [](const double x) {
+        return 0.1 * std::pow(x - 1.2, 5) - 0.5 * std::pow(x + 3.1, 3) - 1.1 * std::pow(x - 0.3, 2) + 3.1 * (x + 2.0);
+    };
+    const auto f1  = [](const double x) { return 4.2 * std::cos(x) - 1.7 * x; };
+    const auto f2  = [](const double x) { return 1 / log(x) + std::pow(x + 2.3, 2); };
+    const auto f3  = [](const double x) { return std::log10(std::pow(std::numbers::pi, std::exp(x))) - std::numbers::pi; };
+
+
+    // 二分法による解と実解の差は閾値を下回るか
+    EXPECT_LT(std::abs(bisection_method(f0, 5, 7)           - (6.65052)), epsilon);
+    EXPECT_LT(std::abs(bisection_method(f1, 1, 1.2)         - (1.10644)), epsilon);
+    EXPECT_LT(std::abs(bisection_method(f2, 0.90 , 0.91)    - (0.90737)), epsilon);
+    EXPECT_LT(std::abs(bisection_method(f3, 0, 2)           - (1.84359)), epsilon);
 }

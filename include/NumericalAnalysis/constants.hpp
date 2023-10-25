@@ -7,10 +7,10 @@ namespace numerical_analysis {
         public:
             Constants()  = delete;
             ~Constants() = delete;
-            
+
             static constexpr double         pi              = 3.141592653589793;
             static constexpr double         h               = 0.01;
-            static constexpr double         epsilon         = 10e-5;
+            static constexpr double         epsilon         = 10e-6;
             static constexpr std::size_t    max_attempts    = 10;
     };
 }

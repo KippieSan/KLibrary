@@ -63,5 +63,34 @@ namespace numerical_analysis {
         }
         return current_x;
     }
+
+    /*
+     * [l, r)について二分法によるf(x)=0の解の探索を行う
+     *
+     * 引数
+     * - f              : f(x)
+     * - l              : 探索範囲の左端
+     * - r              : 探索範囲の右端
+     * - epsilon        : 収束判定条件
+     */
+    double bisection_method(
+        const std::function<double(double)>& f,
+        double l,
+        double r,
+        const double& epsilon = Constants::epsilon
+    ) {
+        double range = r - l;
+        double m;
+        while(range > epsilon) {
+            m = (l + r) / 2;
+            if(f(l) < f(r)) {
+                f(m) > 0 ? r = m : l = m;
+            } else {
+                f(m) > 0 ? l = m : r = m;
+            }
+            range = r - l;
+        }
+        return m;
+    }
 }
 #endif // approximation_algorithm
