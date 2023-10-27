@@ -1,16 +1,18 @@
 #include <gtest/gtest.h>
 #include "../../include/NumericalAnalysis/numerical_differentiation.hpp"
 #include "../../include/NumericalAnalysis/approximation_algorithm.hpp"
+#include "../../include/NumericalAnalysis/constants.hpp"
 
 #include <limits>
 #include <functional>
 #include <cmath>
 #include <numbers>
-
-TEST(NumericalAnalysisTest, DerivativeTest) {
+namespace {
     using namespace numerical_analysis;
+}
+void derivative_test(numerical_analysis::Derivative::Type type, double order) {
     // 誤差の閾値
-    const double epsilon = 10e-5;
+    const double epsilon = order / Constants::h;
     /*
      * 入力関数
      * f0   : 0.2x^4 + 0.5x^3 - x^2 + 3.1x - 2.0
@@ -23,14 +25,29 @@ TEST(NumericalAnalysisTest, DerivativeTest) {
     const auto f2 = [](const double x) { return std::exp(3 * x) + std::pow(std::sin(x), 2); };
     const auto f3 = [](const double x) { return std::atan(x) * std::sin(x) * std::exp(0.5 * x); };
     // 数値微分による値と実際の値は閾値を下回るか
-    EXPECT_LT(std::abs(Derivative(f0).with_respect_to(0.73)         - (2.75056))        , epsilon);
-    EXPECT_LT(std::abs(Derivative(f1).with_respect_to(2.7)          - (-0.42738))       , epsilon);
-    EXPECT_LT(std::abs(Derivative(f2, 0.0001).with_respect_to(0.21) - (6.04059))        , epsilon);
-    EXPECT_LT(std::abs(Derivative(f3).with_respect_to(3.0)          - (-5.08359))       , epsilon);
+    EXPECT_LT(std::abs(Derivative(f0).with_respect_to(0.73, type)         - (2.75056))        , epsilon);
+    EXPECT_LT(std::abs(Derivative(f1).with_respect_to(2.7, type)          - (-0.42738))       , epsilon);
+    EXPECT_LT(std::abs(Derivative(f2, 0.0001).with_respect_to(0.21, type) - (6.04059))        , epsilon);
+    EXPECT_LT(std::abs(Derivative(f3).with_respect_to(3.0, type)          - (-5.08359))       , epsilon);
+    return;
+}
+TEST(NumericalAnalysisTest, ForwardDerivativeTest) {
+    derivative_test(Derivative::Type::Forward, Constants::h);
+}
+TEST(NumericalAnalysisTest, BackwardDerivativeTest) {
+    derivative_test(Derivative::Type::Backward, Constants::h);
+}
+TEST(NumericalAnalysisTest, CentralDerivativeTest) {
+    derivative_test(Derivative::Type::Central, std::pow(Constants::h, 2));
+}
+TEST(NumericalAnalysisTest, FivePointsDerivativeTest) {
+    derivative_test(Derivative::Type::FivePoints, std::pow(Constants::h, 4));
+}
+TEST(NumericalAnalysisTest, SevenPointsDerivativeTest) {
+    derivative_test(Derivative::Type::SevenPoints, std::pow(Constants::h, 6));
 }
 
 TEST(NumericalAnalysisTest, NewtonRaphsonTest) {
-    using namespace numerical_analysis;
     // 誤差の閾値
     const double epsilon = 10e-5;
     /*
@@ -61,7 +78,6 @@ TEST(NumericalAnalysisTest, NewtonRaphsonTest) {
 }
 
 TEST(NumericalAnalysisTest, NewtonRaphson_NumericDerivativeTest) {
-    using namespace numerical_analysis;
     // 誤差の閾値
     const double epsilon = 10e-5;
     /*
@@ -86,7 +102,6 @@ TEST(NumericalAnalysisTest, NewtonRaphson_NumericDerivativeTest) {
 }
 
 TEST(NumericalAnalysisTest, BisectionMethodTest) {
-    using namespace numerical_analysis;
     // 誤差の閾値
     const double epsilon = 10e-5;
     /*
