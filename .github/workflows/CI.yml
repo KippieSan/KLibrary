@@ -17,4 +17,6 @@ jobs:
     - name: show path
       run: echo "${{ github.workspace }}"
     - name: run
-      run: ls -a
+      run: |
+        cd ${{ github.workspace }}
+        ls
