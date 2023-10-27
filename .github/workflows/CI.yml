@@ -15,6 +15,6 @@ jobs:
         cmake -S . -B build
         cmake --build build --config Release
     - name: show path
-      run: echo "${{ github.workspace }}$"
+      run: echo "${{ github.workspace }}"
     - name: run
-      run: ./build/test/NumericalAnalysis/Release/numerical_analysis.exe
+      run: ${{ github.workspace }}/build/test/NumericalAnalysis/Release/numerical_analysis.exe
