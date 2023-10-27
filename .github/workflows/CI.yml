@@ -8,9 +8,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - name: cache clear
+      run: rm ./build/CMakeCache.txt
     - name: build
       run: |
-        rm ./build/CMakeCache.txt
         cmake -S . -B build
         cmake --build build
     - name: run
