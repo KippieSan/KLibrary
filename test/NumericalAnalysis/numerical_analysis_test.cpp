@@ -11,7 +11,19 @@ namespace {
     using namespace numerical_analysis;
 }
 void derivative_test(numerical_analysis::Derivative::Type type, double order) {
-    // 誤差の閾値
+    /*
+     * 誤差の最大許容値
+     * 
+     * 各微分法の誤差のオーダーはそれぞれ
+     * 
+     * - 前進差分法、後退差分法 (O(h))
+     * - 中心差分法 (O(h^2))
+     * - 5点公式 (O(h^4))
+     * - 7点公式 (O(h^6))
+     * 
+     * であるから、hが1 * 10^mであると仮定すれば
+     * これより1次次数を下げた値が許容される誤差の最大値となる。
+     */
     const double epsilon = order / Constants::h;
     /*
      * 入力関数
