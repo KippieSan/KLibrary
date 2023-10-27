@@ -17,4 +17,4 @@ jobs:
     - name: show path
       run: echo "${{ github.workspace }}"
     - name: run
-      run: which numerical_analysis_test.exe
+      run: where numerical_analysis_test.exe
