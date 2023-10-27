@@ -8,15 +8,13 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: build clear
+    - name: reset build
       run: rm -r ./build
-    - name: release build
+    - name: run release build
       run: |
         cmake -S . -B build
         cmake --build build --config Release
-    - name: show path
-      run: echo "${{ github.workspace }}"
-    - name: run
+    - name: run googletest
       run: |
         cd ${{ github.workspace }}
         ./build/test/NumericalAnalysis/numerical_analysis_test
