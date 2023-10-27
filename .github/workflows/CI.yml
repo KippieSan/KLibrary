@@ -15,4 +15,4 @@ jobs:
         cmake -S . -B build
         cmake --build build --config Release
     - name: run
-      run: ./build/test/NumericalAnalysis/Release/test
+      run: test
