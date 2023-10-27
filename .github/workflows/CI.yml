@@ -19,5 +19,4 @@ jobs:
     - name: run
       run: |
         cd ${{ github.workspace }}
-        cd ./build/test/NumericalAnalysis
-        ls
+        ./build/test/NumericalAnalysis/numerical_analysis_test
