@@ -10,9 +10,9 @@ jobs:
     - uses: actions/checkout@v2
     - name: build clear
       run: rm -r ./build
-    - name: build
+    - name: release build
       run: |
         cmake -S . -B build
-        cmake --build build --config RELEASE
+        cmake --build build --config Release
     - name: run
-      run: ./build/test/NumericalAnalysis/Release/test.exe
+      run: ./build/test/NumericalAnalysis/Release/test
