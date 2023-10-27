@@ -39,7 +39,7 @@ void derivative_test(numerical_analysis::Derivative::Type type, double order) {
     // 数値微分による値と実際の値は閾値を下回るか
     EXPECT_LT(std::abs(Derivative(f0).with_respect_to(0.73, type)         - (2.75056))        , epsilon);
     EXPECT_LT(std::abs(Derivative(f1).with_respect_to(2.7, type)          - (-0.42738))       , epsilon);
-    EXPECT_LT(std::abs(Derivative(f2, 0.0001).with_respect_to(0.21, type) - (6.04059))        , epsilon);
+    EXPECT_LT(std::abs(Derivative(f2, 0.01).with_respect_to(0.21, type)   - (6.04059))        , epsilon);
     EXPECT_LT(std::abs(Derivative(f3).with_respect_to(3.0, type)          - (-5.08359))       , epsilon);
     return;
 }
@@ -134,6 +134,6 @@ TEST(NumericalAnalysisTest, BisectionMethodTest) {
     // 二分法による解と実解の差は閾値を下回るか
     EXPECT_LT(std::abs(bisection_method(f0, 5, 7)           - (6.65052)), epsilon);
     EXPECT_LT(std::abs(bisection_method(f1, 1, 1.2)         - (1.10644)), epsilon);
-    EXPECT_LT(std::abs(bisection_method(f2, 0.90 , 0.91)    - (0.90737)), epsilon);
+    EXPECT_LT(std::abs(bisection_method(f2, 0.90, 0.91)     - (0.90737)), epsilon);
     EXPECT_LT(std::abs(bisection_method(f3, 0, 2)           - (1.84359)), epsilon);
 }

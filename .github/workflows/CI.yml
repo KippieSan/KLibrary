@@ -1,0 +1,16 @@
+name: CI
+
+on: [push]
+
+jobs:
+  backend_test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        cmake -S . -B build
+        cmake --build build
+    - name: run
+      run: ./build/test/NumericalAnalysis/Debug/test
