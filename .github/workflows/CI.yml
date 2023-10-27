@@ -17,4 +17,4 @@ jobs:
     - name: show path
       run: echo "${{ github.workspace }}"
     - name: run
-      run: find -name "*.exe"
+      run: ls -a
