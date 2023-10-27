@@ -11,5 +11,5 @@ E:/__Study/KLibrary/build/_deps/googletest-build/googletest/CMakeFiles/gtest.dir
 E:/__Study/KLibrary/build/_deps/googletest-build/googletest/CMakeFiles/gtest_main.dir
 E:/__Study/KLibrary/build/_deps/googletest-build/googletest/CMakeFiles/INSTALL.dir
 E:/__Study/KLibrary/build/_deps/googletest-build/googletest/CMakeFiles/ALL_BUILD.dir
-E:/__Study/KLibrary/build/test/NumericalAnalysis/CMakeFiles/test.dir
+E:/__Study/KLibrary/build/test/NumericalAnalysis/CMakeFiles/numerical_analysis_test.dir
 E:/__Study/KLibrary/build/test/NumericalAnalysis/CMakeFiles/INSTALL.dir
