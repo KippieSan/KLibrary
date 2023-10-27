@@ -17,4 +17,4 @@ jobs:
     - name: show path
       run: echo "${{ github.workspace }}"
     - name: run
-      run: ls
+      run: find -name "numerical_analysis_test.exe"
