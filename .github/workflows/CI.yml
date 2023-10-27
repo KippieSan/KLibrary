@@ -3,13 +3,14 @@ name: CI
 on: [push]
 
 jobs:
-  backend_test:
+  unittest-NumericalAnalysis:
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v2
     - name: build
       run: |
+        del ./build/CMakeCache.txt
         cmake -S . -B build
         cmake --build build
     - name: run
