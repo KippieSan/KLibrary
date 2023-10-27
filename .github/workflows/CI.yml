@@ -13,6 +13,6 @@ jobs:
     - name: build
       run: |
         cmake -S . -B build
-        cmake --build build
+        cmake --build build --config RELEASE
     - name: run
-      run: ./build/test/NumericalAnalysis/Debug/test
+      run: ./build/test/NumericalAnalysis/Release/test.exe
