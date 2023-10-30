@@ -1,6 +1,6 @@
 #include "matrix_base_exceptions.hpp"
 #include <array>
-#include <ranges>
+#include <cassert>
 namespace {
     using namespace linear_algebra::matrix_exception;
 }
@@ -11,23 +11,12 @@ namespace linear_algebra {
             std::array<ElementType, RowSize * ColumnSize> matrix_;
         public:
             MatrixBase(std::initializer_list<std::initializer_list<ElementType>>&& input_matrix) {
-                try {
-                    // サイズが0の行列は入力不可
-                    if(RowSize == 0 || ColumnSize == 0)             throw TriedToInitializeAnEmptyMatrix();
-                    // 定義と異なるサイズの入力は不可
-                    if(input_matrix.size() != RowSize)              throw MatrixSizeDiffersFromDefinition();
-                    for(const auto& row: input_matrix) {
-                        if(std::end(row) - std::begin(row) != ColumnSize) throw MatrixSizeDiffersFromDefinition();
-                    }
+                static_assert(RowSize != 0 && ColumnSize != 0);
+                static_assert(input_matrix.size() == RowSize);
+                for(const auto& row: input_matrix) {
+                    assert((*std::begin(row)).size() == ColumnSize);
                 }
-                catch(TriedToInitializeAnEmptyMatrix& e) {
-                    std::cerr << e.what() << std::endl;
-                    std::terminate();
-                }
-                catch(MatrixSizeDiffersFromDefinition& e) {
-                    std::cerr << e.what() << std::endl;
-                    std::terminate();
-                }
+                
                 auto matrix_iterator = this->matrix_.begin();
                 for(const auto& row: input_matrix) {
                     std::move(std::begin(row), std::end(row), matrix_iterator);
@@ -35,20 +24,9 @@ namespace linear_algebra {
                 }
             }
             MatrixBase(std::initializer_list<ElementType>&& input_matrix) {
-                try {
-                    // サイズが0の行列は入力不可
-                    if(RowSize == 0 || ColumnSize == 0)             throw TriedToInitializeAnEmptyMatrix();
-                    // 定義と異なるサイズの入力は不可
-                    if(input_matrix.size() != RowSize * ColumnSize) throw MatrixSizeDiffersFromDefinition();
-                }
-                catch(TriedToInitializeAnEmptyMatrix& e) {
-                    std::cerr << e.what() << std::endl;
-                    std::terminate();
-                }
-                catch(MatrixSizeDiffersFromDefinition& e) {
-                    std::cerr << e.what() << std::endl;
-                    std::terminate();
-                }
+                static_assert(RowSize != 0 && ColumnSize != 0);
+                static_assert(input_matrix.size() == RowSize * ColumnSize);
+                
                 std::move(input_matrix.begin(), input_matrix.end(), this->matrix_.begin());
             }
             MatrixBase(const MatrixBase<ElementType, RowSize, ColumnSize>& input): matrix_(input.matrix){}
