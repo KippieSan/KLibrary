@@ -189,9 +189,9 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <Project>{03DAC285-96BE-341F-A4E9-9C28E985A656}</Project>
       <Name>gtest_main</Name>
     </ProjectReference>
-    <ProjectReference Include="E:\__Study\KLibrary\build\test\NumericalAnalysis\numerical_analysis_test.vcxproj">
-      <Project>{2556E93C-9C08-32C1-B789-BB8F70F34498}</Project>
-      <Name>numerical_analysis_test</Name>
+    <ProjectReference Include="E:\__Study\KLibrary\build\test\test_all.vcxproj">
+      <Project>{EE494B5D-9802-3005-9D17-BDCF1BA886ED}</Project>
+      <Name>test_all</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

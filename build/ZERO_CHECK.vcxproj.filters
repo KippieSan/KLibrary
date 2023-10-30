@@ -33,8 +33,8 @@
     <None Include="E:\__Study\KLibrary\build\_deps\googletest-src\googletest\cmake\internal_utils.cmake">
       <Filter>Buildsystem Input Files\build\_deps\googletest-src\googletest\cmake</Filter>
     </None>
-    <None Include="E:\__Study\KLibrary\test\NumericalAnalysis\CMakeLists.txt">
-      <Filter>Buildsystem Input Files\test\NumericalAnalysis</Filter>
+    <None Include="E:\__Study\KLibrary\test\CMakeLists.txt">
+      <Filter>Buildsystem Input Files\test</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -59,8 +59,8 @@
     <Filter Include="Buildsystem Input Files\build\_deps\googletest-src\googletest\cmake">
       <UniqueIdentifier>{3B5618B9-D48F-3CB6-A9C6-A8231C26912B}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Buildsystem Input Files\test\NumericalAnalysis">
-      <UniqueIdentifier>{36C47D0A-8750-3F93-9F2B-94223056680E}</UniqueIdentifier>
+    <Filter Include="Buildsystem Input Files\test">
+      <UniqueIdentifier>{96AE8643-0AAE-32D9-B395-5C64B1EB70AB}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
