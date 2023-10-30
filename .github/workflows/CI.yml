@@ -3,7 +3,7 @@ name: CI
 on: [push]
 
 jobs:
-  unittest-NumericalAnalysis:
+  unit-test:
     runs-on: ubuntu-latest
 
     steps:
@@ -17,5 +17,4 @@ jobs:
     - name: run googletest
       run: |
         cd ${{ github.workspace }}
-        cd ./build/test
-        ls
+        ./build/test/test_all
