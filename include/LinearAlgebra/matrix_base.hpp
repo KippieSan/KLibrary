@@ -12,7 +12,7 @@ namespace linear_algebra {
         public:
             MatrixBase(std::initializer_list<std::initializer_list<ElementType>>&& input_matrix) {
                 static_assert(RowSize != 0 && ColumnSize != 0);
-                static_assert(input_matrix.size() == RowSize);
+                assert(input_matrix.size() == RowSize);
                 for(const auto& row: input_matrix) {
                     assert((*std::begin(row)).size() == ColumnSize);
                 }
@@ -25,8 +25,8 @@ namespace linear_algebra {
             }
             MatrixBase(std::initializer_list<ElementType>&& input_matrix) {
                 static_assert(RowSize != 0 && ColumnSize != 0);
-                static_assert(input_matrix.size() == RowSize * ColumnSize);
-                
+                assert(input_matrix.size() == RowSize * ColumnSize);
+
                 std::move(input_matrix.begin(), input_matrix.end(), this->matrix_.begin());
             }
             MatrixBase(const MatrixBase<ElementType, RowSize, ColumnSize>& input): matrix_(input.matrix){}
