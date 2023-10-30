@@ -17,4 +17,4 @@ jobs:
     - name: run googletest
       run: |
         cd ${{ github.workspace }}
-        ./build/test/NumericalAnalysis/numerical_analysis_test
+        ./build/test/test
