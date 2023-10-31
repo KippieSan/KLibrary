@@ -14,7 +14,7 @@ namespace linear_algebra {
                 static_assert(RowSize != 0 && ColumnSize != 0);
                 assert(input_matrix.size() == RowSize);
                 for(const auto& row: input_matrix) {
-                    assert((*std::begin(row)).size() == ColumnSize);
+                    assert(row.size() == ColumnSize);
                 }
                 
                 auto matrix_iterator = this->matrix_.begin();
