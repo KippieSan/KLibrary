@@ -235,7 +235,7 @@ namespace linear_algebra {
                 return (*this);
             }
 
-            friend std::ostream& operator<<<>(std::ostream&, const MatrixBase&);
+            friend std::ostream& operator<<(std::ostream&, const MatrixBase&);
     };
     template <class ElementType, std::size_t RowSize, std::size_t ColumnSize>
     std::ostream& operator<<(std::ostream& cout, const MatrixBase<ElementType, RowSize, ColumnSize>& input_matrix) {
