@@ -32,6 +32,8 @@
 *.app
 
 /build/*
-!/build/CMakeCache.txt
-!/build/test/test_all.exe
+!/build/test/
+/build/test/*
+!/build/test/Debug/
+/build/test/Debug/*
 !/build/test/Debug/test_all.exe
