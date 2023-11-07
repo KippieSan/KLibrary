@@ -1,6 +1,6 @@
-^E:\__STUDY\KLIBRARY\BUILD\_DEPS\GOOGLETEST-SUBBUILD\CMAKELISTS.TXT
+^C:\USERS\GDKIP\GITHUBPROJECTS\KLIBRARY\BUILD\_DEPS\GOOGLETEST-SUBBUILD\CMAKELISTS.TXT
 setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -SE:/__Study/KLibrary/build/_deps/googletest-subbuild -BE:/__Study/KLibrary/build/_deps/googletest-subbuild --check-stamp-file E:/__Study/KLibrary/build/_deps/googletest-subbuild/CMakeFiles/generate.stamp
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/gdkip/GithubProjects/KLibrary/build/_deps/googletest-subbuild -BC:/Users/gdkip/GithubProjects/KLibrary/build/_deps/googletest-subbuild --check-stamp-file C:/Users/gdkip/GithubProjects/KLibrary/build/_deps/googletest-subbuild/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone

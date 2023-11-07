@@ -25,9 +25,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{480086DF-2D22-399F-9A3C-6DAF146EB89E}</ProjectGuid>
+    <ProjectGuid>{59BF8988-B6E4-3EE4-A949-2ABA69F7B9C7}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <WindowsTargetPlatformVersion>10.0.19041.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.22621.0</WindowsTargetPlatformVersion>
     <Platform>x64</Platform>
     <ProjectName>ALL_BUILD</ProjectName>
     <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
@@ -69,7 +69,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Midl>
-      <AdditionalIncludeDirectories>E:\__Study\KLibrary\build\_deps\googletest-src\googletest\include;E:\__Study\KLibrary\build\_deps\googletest-src\googletest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\gdkip\GithubProjects\KLibrary\build\_deps\googletest-src\googletest\include;C:\Users\gdkip\GithubProjects\KLibrary\build\_deps\googletest-src\googletest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -79,7 +79,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Midl>
-      <AdditionalIncludeDirectories>E:\__Study\KLibrary\build\_deps\googletest-src\googletest\include;E:\__Study\KLibrary\build\_deps\googletest-src\googletest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\gdkip\GithubProjects\KLibrary\build\_deps\googletest-src\googletest\include;C:\Users\gdkip\GithubProjects\KLibrary\build\_deps\googletest-src\googletest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -89,7 +89,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
     <Midl>
-      <AdditionalIncludeDirectories>E:\__Study\KLibrary\build\_deps\googletest-src\googletest\include;E:\__Study\KLibrary\build\_deps\googletest-src\googletest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\gdkip\GithubProjects\KLibrary\build\_deps\googletest-src\googletest\include;C:\Users\gdkip\GithubProjects\KLibrary\build\_deps\googletest-src\googletest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -99,7 +99,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
     <Midl>
-      <AdditionalIncludeDirectories>E:\__Study\KLibrary\build\_deps\googletest-src\googletest\include;E:\__Study\KLibrary\build\_deps\googletest-src\googletest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\gdkip\GithubProjects\KLibrary\build\_deps\googletest-src\googletest\include;C:\Users\gdkip\GithubProjects\KLibrary\build\_deps\googletest-src\googletest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -108,11 +108,11 @@
     </Midl>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <CustomBuild Include="E:\__Study\KLibrary\build\_deps\googletest-src\googletest\CMakeLists.txt">
+    <CustomBuild Include="C:\Users\gdkip\GithubProjects\KLibrary\build\_deps\googletest-src\googletest\CMakeLists.txt">
       <UseUtf8Encoding>Always</UseUtf8Encoding>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule E:/__Study/KLibrary/build/_deps/googletest-src/googletest/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule C:/Users/gdkip/GithubProjects/KLibrary/build/_deps/googletest-src/googletest/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -SE:/__Study/KLibrary -BE:/__Study/KLibrary/build --check-stamp-file E:/__Study/KLibrary/build/_deps/googletest-build/googletest/CMakeFiles/generate.stamp
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/gdkip/GithubProjects/KLibrary -BC:/Users/gdkip/GithubProjects/KLibrary/build --check-stamp-file C:/Users/gdkip/GithubProjects/KLibrary/build/_deps/googletest-build/googletest/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -120,12 +120,12 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Program Files\CMake\share\cmake-3.27\Modules\BasicConfigVersion-AnyNewerVersion.cmake.in;C:\Program Files\CMake\share\cmake-3.27\Modules\CMakePackageConfigHelpers.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\CheckCSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\CheckIncludeFile.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\CheckLibraryExists.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\FindPython\Support.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\FindPython3.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\FindThreads.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\Internal\CheckSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\WriteBasicConfigVersionFile.cmake;E:\__Study\KLibrary\build\_deps\googletest-src\googletest\cmake\Config.cmake.in;E:\__Study\KLibrary\build\_deps\googletest-src\googletest\cmake\gtest.pc.in;E:\__Study\KLibrary\build\_deps\googletest-src\googletest\cmake\gtest_main.pc.in;E:\__Study\KLibrary\build\_deps\googletest-src\googletest\cmake\internal_utils.cmake;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">E:\__Study\KLibrary\build\_deps\googletest-build\googletest\CMakeFiles\generate.stamp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Program Files\CMake\share\cmake-3.28\Modules\BasicConfigVersion-AnyNewerVersion.cmake.in;C:\Program Files\CMake\share\cmake-3.28\Modules\CMakePackageConfigHelpers.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\CheckCSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\CheckIncludeFile.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\CheckLibraryExists.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\FindPython\Support.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\FindPython3.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\FindThreads.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\Internal\CheckSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\WriteBasicConfigVersionFile.cmake;C:\Users\gdkip\GithubProjects\KLibrary\build\_deps\googletest-src\googletest\cmake\Config.cmake.in;C:\Users\gdkip\GithubProjects\KLibrary\build\_deps\googletest-src\googletest\cmake\gtest.pc.in;C:\Users\gdkip\GithubProjects\KLibrary\build\_deps\googletest-src\googletest\cmake\gtest_main.pc.in;C:\Users\gdkip\GithubProjects\KLibrary\build\_deps\googletest-src\googletest\cmake\internal_utils.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\gdkip\GithubProjects\KLibrary\build\_deps\googletest-build\googletest\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule E:/__Study/KLibrary/build/_deps/googletest-src/googletest/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule C:/Users/gdkip/GithubProjects/KLibrary/build/_deps/googletest-src/googletest/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -SE:/__Study/KLibrary -BE:/__Study/KLibrary/build --check-stamp-file E:/__Study/KLibrary/build/_deps/googletest-build/googletest/CMakeFiles/generate.stamp
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/gdkip/GithubProjects/KLibrary -BC:/Users/gdkip/GithubProjects/KLibrary/build --check-stamp-file C:/Users/gdkip/GithubProjects/KLibrary/build/_deps/googletest-build/googletest/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -133,12 +133,12 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Program Files\CMake\share\cmake-3.27\Modules\BasicConfigVersion-AnyNewerVersion.cmake.in;C:\Program Files\CMake\share\cmake-3.27\Modules\CMakePackageConfigHelpers.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\CheckCSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\CheckIncludeFile.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\CheckLibraryExists.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\FindPython\Support.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\FindPython3.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\FindThreads.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\Internal\CheckSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\WriteBasicConfigVersionFile.cmake;E:\__Study\KLibrary\build\_deps\googletest-src\googletest\cmake\Config.cmake.in;E:\__Study\KLibrary\build\_deps\googletest-src\googletest\cmake\gtest.pc.in;E:\__Study\KLibrary\build\_deps\googletest-src\googletest\cmake\gtest_main.pc.in;E:\__Study\KLibrary\build\_deps\googletest-src\googletest\cmake\internal_utils.cmake;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">E:\__Study\KLibrary\build\_deps\googletest-build\googletest\CMakeFiles\generate.stamp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Program Files\CMake\share\cmake-3.28\Modules\BasicConfigVersion-AnyNewerVersion.cmake.in;C:\Program Files\CMake\share\cmake-3.28\Modules\CMakePackageConfigHelpers.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\CheckCSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\CheckIncludeFile.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\CheckLibraryExists.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\FindPython\Support.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\FindPython3.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\FindThreads.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\Internal\CheckSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\WriteBasicConfigVersionFile.cmake;C:\Users\gdkip\GithubProjects\KLibrary\build\_deps\googletest-src\googletest\cmake\Config.cmake.in;C:\Users\gdkip\GithubProjects\KLibrary\build\_deps\googletest-src\googletest\cmake\gtest.pc.in;C:\Users\gdkip\GithubProjects\KLibrary\build\_deps\googletest-src\googletest\cmake\gtest_main.pc.in;C:\Users\gdkip\GithubProjects\KLibrary\build\_deps\googletest-src\googletest\cmake\internal_utils.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\gdkip\GithubProjects\KLibrary\build\_deps\googletest-build\googletest\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule E:/__Study/KLibrary/build/_deps/googletest-src/googletest/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule C:/Users/gdkip/GithubProjects/KLibrary/build/_deps/googletest-src/googletest/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -SE:/__Study/KLibrary -BE:/__Study/KLibrary/build --check-stamp-file E:/__Study/KLibrary/build/_deps/googletest-build/googletest/CMakeFiles/generate.stamp
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/gdkip/GithubProjects/KLibrary -BC:/Users/gdkip/GithubProjects/KLibrary/build --check-stamp-file C:/Users/gdkip/GithubProjects/KLibrary/build/_deps/googletest-build/googletest/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -146,12 +146,12 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Program Files\CMake\share\cmake-3.27\Modules\BasicConfigVersion-AnyNewerVersion.cmake.in;C:\Program Files\CMake\share\cmake-3.27\Modules\CMakePackageConfigHelpers.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\CheckCSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\CheckIncludeFile.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\CheckLibraryExists.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\FindPython\Support.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\FindPython3.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\FindThreads.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\Internal\CheckSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\WriteBasicConfigVersionFile.cmake;E:\__Study\KLibrary\build\_deps\googletest-src\googletest\cmake\Config.cmake.in;E:\__Study\KLibrary\build\_deps\googletest-src\googletest\cmake\gtest.pc.in;E:\__Study\KLibrary\build\_deps\googletest-src\googletest\cmake\gtest_main.pc.in;E:\__Study\KLibrary\build\_deps\googletest-src\googletest\cmake\internal_utils.cmake;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">E:\__Study\KLibrary\build\_deps\googletest-build\googletest\CMakeFiles\generate.stamp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Program Files\CMake\share\cmake-3.28\Modules\BasicConfigVersion-AnyNewerVersion.cmake.in;C:\Program Files\CMake\share\cmake-3.28\Modules\CMakePackageConfigHelpers.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\CheckCSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\CheckIncludeFile.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\CheckLibraryExists.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\FindPython\Support.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\FindPython3.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\FindThreads.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\Internal\CheckSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\WriteBasicConfigVersionFile.cmake;C:\Users\gdkip\GithubProjects\KLibrary\build\_deps\googletest-src\googletest\cmake\Config.cmake.in;C:\Users\gdkip\GithubProjects\KLibrary\build\_deps\googletest-src\googletest\cmake\gtest.pc.in;C:\Users\gdkip\GithubProjects\KLibrary\build\_deps\googletest-src\googletest\cmake\gtest_main.pc.in;C:\Users\gdkip\GithubProjects\KLibrary\build\_deps\googletest-src\googletest\cmake\internal_utils.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\gdkip\GithubProjects\KLibrary\build\_deps\googletest-build\googletest\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule E:/__Study/KLibrary/build/_deps/googletest-src/googletest/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule C:/Users/gdkip/GithubProjects/KLibrary/build/_deps/googletest-src/googletest/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -SE:/__Study/KLibrary -BE:/__Study/KLibrary/build --check-stamp-file E:/__Study/KLibrary/build/_deps/googletest-build/googletest/CMakeFiles/generate.stamp
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/gdkip/GithubProjects/KLibrary -BC:/Users/gdkip/GithubProjects/KLibrary/build --check-stamp-file C:/Users/gdkip/GithubProjects/KLibrary/build/_deps/googletest-build/googletest/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -159,26 +159,26 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Program Files\CMake\share\cmake-3.27\Modules\BasicConfigVersion-AnyNewerVersion.cmake.in;C:\Program Files\CMake\share\cmake-3.27\Modules\CMakePackageConfigHelpers.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\CheckCSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\CheckIncludeFile.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\CheckLibraryExists.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\FindPython\Support.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\FindPython3.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\FindThreads.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\Internal\CheckSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\WriteBasicConfigVersionFile.cmake;E:\__Study\KLibrary\build\_deps\googletest-src\googletest\cmake\Config.cmake.in;E:\__Study\KLibrary\build\_deps\googletest-src\googletest\cmake\gtest.pc.in;E:\__Study\KLibrary\build\_deps\googletest-src\googletest\cmake\gtest_main.pc.in;E:\__Study\KLibrary\build\_deps\googletest-src\googletest\cmake\internal_utils.cmake;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">E:\__Study\KLibrary\build\_deps\googletest-build\googletest\CMakeFiles\generate.stamp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Program Files\CMake\share\cmake-3.28\Modules\BasicConfigVersion-AnyNewerVersion.cmake.in;C:\Program Files\CMake\share\cmake-3.28\Modules\CMakePackageConfigHelpers.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\CheckCSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\CheckIncludeFile.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\CheckLibraryExists.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\FindPython\Support.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\FindPython3.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\FindThreads.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\Internal\CheckSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-3.28\Modules\WriteBasicConfigVersionFile.cmake;C:\Users\gdkip\GithubProjects\KLibrary\build\_deps\googletest-src\googletest\cmake\Config.cmake.in;C:\Users\gdkip\GithubProjects\KLibrary\build\_deps\googletest-src\googletest\cmake\gtest.pc.in;C:\Users\gdkip\GithubProjects\KLibrary\build\_deps\googletest-src\googletest\cmake\gtest_main.pc.in;C:\Users\gdkip\GithubProjects\KLibrary\build\_deps\googletest-src\googletest\cmake\internal_utils.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\gdkip\GithubProjects\KLibrary\build\_deps\googletest-build\googletest\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="E:\__Study\KLibrary\build\ZERO_CHECK.vcxproj">
-      <Project>{F92A3CFB-596A-3CD0-9E2B-0A7BB82456C8}</Project>
+    <ProjectReference Include="C:\Users\gdkip\GithubProjects\KLibrary\build\ZERO_CHECK.vcxproj">
+      <Project>{9E2B39D8-43F8-3C9B-AD80-233E2659A70A}</Project>
       <Name>ZERO_CHECK</Name>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </ProjectReference>
-    <ProjectReference Include="E:\__Study\KLibrary\build\_deps\googletest-build\googletest\gtest.vcxproj">
-      <Project>{303E7D58-CA59-3CAF-A414-53B549B65C54}</Project>
+    <ProjectReference Include="C:\Users\gdkip\GithubProjects\KLibrary\build\_deps\googletest-build\googletest\gtest.vcxproj">
+      <Project>{35ECCB90-A7D7-3578-9406-DA38B1CBA8B8}</Project>
       <Name>gtest</Name>
     </ProjectReference>
-    <ProjectReference Include="E:\__Study\KLibrary\build\_deps\googletest-build\googletest\gtest_main.vcxproj">
-      <Project>{03DAC285-96BE-341F-A4E9-9C28E985A656}</Project>
+    <ProjectReference Include="C:\Users\gdkip\GithubProjects\KLibrary\build\_deps\googletest-build\googletest\gtest_main.vcxproj">
+      <Project>{68F18684-8B1D-3558-9193-ADC7F001A8D6}</Project>
       <Name>gtest_main</Name>
     </ProjectReference>
   </ItemGroup>

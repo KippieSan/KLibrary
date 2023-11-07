@@ -13,7 +13,7 @@ namespace linear_algebra {
         private:
             Array<ElemT, Rows * Cols> matrix_;
         public:
-            StaticMatrixBase(const ElemT& elem) {
+            StaticMatrixBase(const ElemT& elem = 0) {
                 this->matrix_.fill(elem);
             }
             StaticMatrixBase(std::initializer_list<std::initializer_list<ElemT>>&& input_matrix) {
@@ -23,7 +23,7 @@ namespace linear_algebra {
                     assert(row.size() == Cols);
                 }
                 
-                auto& matrix_iterator = this->matrix_.begin();
+                auto matrix_iterator = this->matrix_.begin();
                 for(const auto& row: input_matrix) {
                     std::move(std::begin(row), std::end(row), matrix_iterator);
                     std::advance(matrix_iterator, Rows);
@@ -38,7 +38,7 @@ namespace linear_algebra {
             StaticMatrixBase(const Array<Array<ElemT, Cols>, Rows>& input_matrix) {
                 static_assert(Rows != 0 && Cols != 0);
 
-                auto& matrix_iterator = this->matrix_.begin();
+                auto matrix_iterator = this->matrix_.begin();
                 for(const auto& row: input_matrix) {
                     std::move(row.begin(), row.end(), matrix_iterator);
                     std::advance(matrix_iterator, Rows);

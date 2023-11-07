@@ -1,6 +1,6 @@
-^E:\__STUDY\KLIBRARY\BUILD\_DEPS\GOOGLETEST-SUBBUILD\CMAKEFILES\C7A5EF6E75F30F83656FA6E20B12FF8E\GENERATE.STAMP.RULE
+^C:\USERS\GDKIP\GITHUBPROJECTS\KLIBRARY\BUILD\_DEPS\GOOGLETEST-SUBBUILD\CMAKEFILES\69EF5051D0A1696C49265CDC488FBBB4\GENERATE.STAMP.RULE
 setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -SE:/__Study/KLibrary/build/_deps/googletest-subbuild -BE:/__Study/KLibrary/build/_deps/googletest-subbuild --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file E:/__Study/KLibrary/build/_deps/googletest-subbuild/googletest-populate.sln
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/gdkip/GithubProjects/KLibrary/build/_deps/googletest-subbuild -BC:/Users/gdkip/GithubProjects/KLibrary/build/_deps/googletest-subbuild --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file C:/Users/gdkip/GithubProjects/KLibrary/build/_deps/googletest-subbuild/googletest-populate.sln
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
