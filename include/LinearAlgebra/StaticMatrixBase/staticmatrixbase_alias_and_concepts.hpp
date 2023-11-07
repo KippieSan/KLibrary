@@ -11,7 +11,7 @@ namespace linear_algebra {
     using Array = std::array<ElemT, size>;
     // T, Uから変換可能な共通の型が存在するか
     template <class T, class U>
-    concept CommonTypeWith = std::common_with<T, U>;
+    concept HasCommonTypeWith = std::common_with<T, U>;
     // T, Uから変換可能な共通の型を返す
     template <class T, class U>
     using CommonTypeOf = std::common_type<T, U>::type;

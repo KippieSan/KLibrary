@@ -23,9 +23,11 @@ namespace linear_algebra {
                 }
                 
                 auto matrix_iterator = this->matrix_.begin();
-                for(const auto& row: input_matrix) {
+                for(auto&& row: input_matrix) {
                     std::move(std::begin(row), std::end(row), matrix_iterator);
-                    std::advance(matrix_iterator, Rows);
+                    if(std::distance(matrix_iterator, this->matrix_.end()) > Cols) {
+                        std::advance(matrix_iterator, Cols);
+                    }
                 }
             }
             StaticMatrixBase(std::initializer_list<ElemT>&& input_matrix) {
@@ -39,14 +41,16 @@ namespace linear_algebra {
 
                 auto matrix_iterator = this->matrix_.begin();
                 for(const auto& row: input_matrix) {
-                    std::move(row.begin(), row.end(), matrix_iterator);
-                    std::advance(matrix_iterator, Rows);
+                    std::copy(row.begin(), row.end(), matrix_iterator);
+                    if(std::distance(matrix_iterator, this->matrix_.end()) > Cols) {
+                        std::advance(matrix_iterator, Cols);
+                    }
                 }
             }
             StaticMatrixBase(const Array<ElemT, Rows * Cols>& input_matrix) {
                 static_assert(Rows != 0 && Cols != 0);
 
-                std::move(input_matrix.begin(), input_matrix.end(), this->matrix_.begin());
+                std::copy(input_matrix.begin(), input_matrix.end(), this->matrix_.begin());
             }
             StaticMatrixBase(const StaticMatrixBase<ElemT, Rows, Cols>& input): matrix_(input.matrix_){}
             StaticMatrixBase(StaticMatrixBase<ElemT, Rows, Cols>&& input): matrix_(input.matrix_){}
@@ -54,12 +58,12 @@ namespace linear_algebra {
             const ElemT& operator()(const SizeT& r, const SizeT& c) const {
                 assert(r < Rows);
                 assert(c < Cols);
-                return this->matrix_.at(Rows * r + c);
+                return this->matrix_.at(Cols * r + c);
             }
             ElemT& operator()(const SizeT& r, const SizeT& c) {
                 assert(r < Rows);
                 assert(c < Cols);
-                return this->matrix_.at(Rows * r + c);
+                return this->matrix_.at(Cols * r + c);
             }
             const ElemT& at(const SizeT& i) const {
                 assert(i < Rows * Cols);
@@ -142,20 +146,56 @@ namespace linear_algebra {
                 return (*this);
             }
 
-            friend std::ostream& operator<<(std::ostream&, const StaticMatrixBase&);
+            
+            friend std::ostream& operator<<<>(std::ostream&, const StaticMatrixBase&);
     };
+
+    template <class ElemT_L, SizeT Rows_L, SizeT Cols_L, class ElemT_R, SizeT Rows_R, SizeT Cols_R>
+    auto operator+(
+        const StaticMatrixBase<ElemT_L, Rows_L, Cols_L>& lhs,
+        const StaticMatrixBase<ElemT_R, Rows_R, Cols_R>& rhs
+    ) {
+        static_assert(Rows_L == Rows_R && Cols_L == Cols_R);
+        static_assert(HasCommonTypeWith<ElemT_L, ElemT_R>);
+
+        using CommonType = CommonTypeOf<ElemT_L, ElemT_R>;
+
+        constexpr SizeT Rows = Rows_L;
+        constexpr SizeT Cols = Cols_L;
+
+        StaticMatrixBase<CommonType, Rows, Cols> result;
+        for(SizeT r = 0; r < Rows; ++r) {
+            for(SizeT c = 0; c < Cols; ++c) {
+                if constexpr(IsAdditionDefined<ElemT_L, ElemT_R>) {
+                    result(r, c) = static_cast<CommonType>(lhs(r, c) + rhs(r, c));
+                } else {
+                    static_assert(IsAdditionDefined<CommonType, CommonType>);
+                    result(r, c) = static_cast<CommonType>(lhs(r, c)) + static_cast<CommonType>(rhs(r, c));
+                }
+            }
+        }
+        return result;
+    }
+    template <class ElemT_L, SizeT Rows_L, SizeT Cols_L, class ElemT_R, SizeT Rows_R, SizeT Cols_R>
+    auto operator-(
+        const StaticMatrixBase<ElemT_L, Rows_L, Cols_L>& lhs,
+        const StaticMatrixBase<ElemT_R, Rows_R, Cols_R>& rhs
+    ) {
+        auto tmp = rhs;
+        return lhs + (tmp *= -1);
+    }
+
     template <class ElemT, SizeT Rows, SizeT Cols>
-    std::ostream& operator<<(std::ostream& cout, const StaticMatrixBase<ElemT, Rows, Cols>& input_matrix) {
+    std::ostream& operator<<(std::ostream& out, const StaticMatrixBase<ElemT, Rows, Cols>& input_matrix) {
         const auto& matrix = input_matrix.matrix_;
         for(SizeT r = 0; r < Rows; ++r) {
-            cout << "{ ";
-            SizeT c = 0;
-            for(; c < Cols - 1; ++c) {
-                cout << matrix.at(Rows * r + c) << ", ";
+            out << "{ ";
+            for(SizeT c = 0; c < Cols; ++c) {
+                out << matrix.at(Rows * r + c) << (c < Cols - 1 ? ", " : " ");
             }
-            cout << matrix.at(Rows * r + c) << " }" << std::endl;
+            out << (r < Rows - 1 ? "}," : "}") << std::endl;
         }
-        return cout;
+        return out;
     }
 }
 #endif // staticmatrixbase_hpp

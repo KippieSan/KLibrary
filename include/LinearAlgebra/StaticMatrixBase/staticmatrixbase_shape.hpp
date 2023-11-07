@@ -13,7 +13,7 @@ namespace linear_algebra {
             MatrixBaseShape(MatrixBaseShape&& shape): MatrixBaseShape(shape.row_, shape.column_){}
 
             constexpr std::size_t row() const noexcept { return this->row_; }
-            constexpr std::size_t column() const noexcept { return this->column_; }
+            constexpr std::size_t col() const noexcept { return this->column_; }
     };
 }
 #endif // staticmatrixbase_shape_hpp
