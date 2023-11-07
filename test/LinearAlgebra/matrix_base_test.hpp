@@ -1,19 +1,25 @@
 #include <gtest/gtest.h>
-#include "../../include/LinearAlgebra/matrix_base.hpp"
+#include <array>
+#include "../../include/LinearAlgebra/StaticMatrixBase/staticmatrixbase.hpp"
 namespace {
     using namespace linear_algebra;
 }
 TEST(LinearAlgebraTest, MatrixBaseConstructorTest) {
     // コンパイルが通るかのテスト
-    // デフォルトコンストラクタ
-    StaticMatrixBase<int, 3, 3> m;
+    // 全ての値を0で初期化
+    StaticMatrixBase<int, 3, 3> dm1(0);
     // initializer_listによる初期化
-    StaticMatrixBase<int, 3, 3> m1 = {{1, 2, 3}, {2, 3, 4}, {3, 4, 5}};
-    StaticMatrixBase<int, 2, 2> m2 = {1, 2, 3, 4};
+    StaticMatrixBase<int, 3, 3> ini_m1 = {{1, 2, 3}, {2, 3, 4}, {3, 4, 5}};
+    StaticMatrixBase<int, 2, 2> ini_m2 = {1, 2, 3, 4};
+    // std::arrayによる初期化
+    std::array<std::array<int, 2>, 3> arr1 = {{{1, 2}, {2, 3}, {1, 2}}};
+    std::array<int, 6> arr2 = {1, 2, 3, 4, 5, 6};
+    StaticMatrixBase<int, 3, 2> arr_m1 = arr1;
+    StaticMatrixBase<int, 2, 3> arr_m2 = arr2;
     // コピーコンストラクタ 左辺値参照
-    StaticMatrixBase<int, 3, 3> m3 = m1;
+    StaticMatrixBase<int, 3, 3> copy_m1 = ini_m1;
     // コピーコンストラクタ 右辺値参照
-    StaticMatrixBase<double, 2, 2> m4 = StaticMatrixBase<double, 2, 2>{1.1, 2.2, 3.3, 4.4};
+    StaticMatrixBase<double, 2, 2> copy_m2 = StaticMatrixBase<double, 2, 2>{1.1, 2.2, 3.3, 4.4};
 }
 TEST(LinearAlgebraTest, MatrixBaseAssignmentOperatorTest) {
     StaticMatrixBase<int, 3, 3>       m1 = {1, 2, 3, 4, 5, 6, 7, 8, 9};

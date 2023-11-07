@@ -2,8 +2,12 @@
 #define staticmatrixbase_alias_and_concepts_hpp
 #include <concepts>
 #include <cstddef>
+#include <array>
 namespace linear_algebra {
     using SizeT = std::size_t;
+
+    template <class ElemT, SizeT size>
+    using Array = std::array<ElemT, size>;
     
     template <class T, class U>
     using CommonTypeOf = std::common_type<T, U>::type;
