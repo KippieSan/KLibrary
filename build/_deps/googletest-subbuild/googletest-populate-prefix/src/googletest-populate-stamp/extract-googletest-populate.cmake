@@ -5,8 +5,8 @@ cmake_minimum_required(VERSION 3.5)
 
 # Make file names absolute:
 #
-get_filename_component(filename "C:/Users/gdkip/GithubProjects/KLibrary/build/_deps/googletest-subbuild/googletest-populate-prefix/src/v1.14.0.zip" ABSOLUTE)
-get_filename_component(directory "C:/Users/gdkip/GithubProjects/KLibrary/build/_deps/googletest-src" ABSOLUTE)
+get_filename_component(filename "E:/__Study/KLibrary/build/_deps/googletest-subbuild/googletest-populate-prefix/src/v1.14.0.zip" ABSOLUTE)
+get_filename_component(directory "E:/__Study/KLibrary/build/_deps/googletest-src" ABSOLUTE)
 
 message(STATUS "extracting...
      src='${filename}'

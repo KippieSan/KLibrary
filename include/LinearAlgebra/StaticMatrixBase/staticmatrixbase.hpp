@@ -6,7 +6,6 @@
 #include <cassert>
 #include <iostream>
 #include <concepts>
-
 namespace linear_algebra {
     template <class ElemT, SizeT Rows, SizeT Cols>
     class StaticMatrixBase {
@@ -85,7 +84,7 @@ namespace linear_algebra {
             StaticMatrixBase& operator-=(const StaticMatrixBase<ElemT_R, Rows_R, Cols_R>& matrix) {
                 static_assert(Rows == Rows_R);
                 static_assert(Cols == Cols_R);
-                static_assert(std::convertible_to<ElemT_R, ElemT>);
+                static_assert(IsConvertibleTo<ElemT_R, ElemT>);
 
                 for(SizeT i = 0; i < Rows * Cols; ++i) {
                     this->matrix_.at(i) -= static_cast<ElemT>(matrix.at(i));
@@ -94,17 +93,21 @@ namespace linear_algebra {
             }
             template <class ElemT_R, SizeT Rows_R, SizeT Cols_R>
             StaticMatrixBase& operator*=(const StaticMatrixBase<ElemT_R, Rows_R, Cols_R>& matrix) {
-                static_assert(Rows == Cols);
-                static_assert(Rows_R == Cols_R);
-                static_assert(Rows == Rows_R);
-                static_assert(std::convertible_to<ElemT_R, ElemT>);
+                static_assert(Rows == Cols);        // 左オペランドは正方行列であるか
+                static_assert(Rows_R == Cols_R);    // 右オペランドは正方行列であるか
+                static_assert(Rows == Rows_R);      // 行列の次数は等しいか
+                static_assert(IsConvertibleTo<ElemT_R, ElemT>);
 
                 const SizeT N = Rows;
                 StaticMatrixBase<ElemT, Rows, Cols> result;
                 for(SizeT r = 0; r < N; ++r) {
                     for(SizeT i = 0; i < N; ++i) {
                         for(SizeT c = 0; c < N; ++c) {
-                            result.matrix_.at(r * N + c) += (*this).at(r * N + i) * static_cast<ElemT>(matrix.at(i * N + c));
+                            if constexpr(IsMultiplicationDefined<ElemT, ElemT_R>) {
+                                result.matrix_.at(r * N + c) += static_cast<ElemT>((*this).at(r * N + i) * matrix.at(i * N + c));
+                            } else {
+                                result.matrix_.at(r * N + c) += (*this).at(r * N + i) * static_cast<ElemT>(matrix.at(i * N + c));
+                            }
                         }
                     }
                 }
@@ -116,7 +119,11 @@ namespace linear_algebra {
                 static_assert(std::convertible_to<ScalarType, ElemT>);
 
                 for(SizeT i = 0; i < Rows * Cols; ++i) {
-                    this->matrix_.at(i) *= static_cast<ElemT>(scalar);
+                    if constexpr(IsMultiplicationDefined<ElemT, ScalarType>) {
+                        this->matrix_.at(i) = static_cast<ElemT>(this->matrix_.at(i) * scalar);
+                    } else {
+                        this->matrix_.at(i) *= static_cast<ElemT>(scalar);
+                    }
                 }
                 return (*this);
             }
@@ -126,7 +133,11 @@ namespace linear_algebra {
                 assert(scalar != ScalarType());
 
                 for(SizeT i = 0; i < Rows * Cols; ++i) {
-                    this->matrix_.at(i) /= static_cast<ElemT>(scalar);
+                    if constexpr(IsDivisionDefined<ElemT, ScalarType>) {
+                        this->matrix_.at(i) = static_cast<ElemT>(this->matrix_.at(i) / scalar);
+                    } else {
+                        this->matrix_.at(i) /= static_cast<ElemT>(scalar);
+                    }
                 }
                 return (*this);
             }
