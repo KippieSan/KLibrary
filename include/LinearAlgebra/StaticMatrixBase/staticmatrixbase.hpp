@@ -1,3 +1,5 @@
+#ifndef staticmatrixbase_hpp
+#define staticmatrixbase_hpp
 #include "staticmatrixbase_shape.hpp"
 #include "staticmatrixbase_alias_and_concepts.hpp"
 #include <array>
@@ -131,3 +133,4 @@ namespace linear_algebra {
         return cout;
     }
 }
+#endif // staticmatrixbase_hpp

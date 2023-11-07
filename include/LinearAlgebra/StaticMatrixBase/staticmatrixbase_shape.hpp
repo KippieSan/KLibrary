@@ -1,3 +1,5 @@
+#ifndef staticmatrixbase_shape_hpp
+#define staticmatrixbase_shape_hpp
 #include <cstddef>
 namespace linear_algebra {
     class MatrixBaseShape {
@@ -14,3 +16,4 @@ namespace linear_algebra {
             constexpr std::size_t column() const noexcept { return this->column_; }
     };
 }
+#endif // staticmatrixbase_shape_hpp

@@ -1,3 +1,5 @@
+#ifndef staticmatrixbase_alias_and_concepts_hpp
+#define staticmatrixbase_alias_and_concepts_hpp
 #include <concepts>
 #include <cstddef>
 namespace linear_algebra {
@@ -17,3 +19,4 @@ namespace linear_algebra {
         {a + b};
     };
 }
+#endif // staticmatrixbase_alias_and_concepts_hpp
