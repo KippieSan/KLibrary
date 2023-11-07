@@ -31,7 +31,7 @@
 *.out
 *.app
 
-build/
-!build/CMakeCache.txt
-!build/test/Debug/test_all
-!build/test/test_all
+/build/*
+!/build/CMakeCache.txt
+!/build/test/test_all.exe
+!/build/test/Debug/test_all.exe

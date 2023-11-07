@@ -147,7 +147,7 @@ namespace linear_algebra {
             }
 
             
-            friend std::ostream& operator<<<>(std::ostream&, const StaticMatrixBase&);
+            friend std::ostream& operator<<(std::ostream&, const StaticMatrixBase&);
     };
 
     template <class ElemT_L, SizeT Rows_L, SizeT Cols_L, class ElemT_R, SizeT Rows_R, SizeT Cols_R>
@@ -198,4 +198,6 @@ namespace linear_algebra {
         return out;
     }
 }
+
+
 #endif // staticmatrixbase_hpp
