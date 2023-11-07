@@ -33,3 +33,4 @@
 
 build/
 !build/CMakeCache.txt
+!build/test/Debug/test_all
