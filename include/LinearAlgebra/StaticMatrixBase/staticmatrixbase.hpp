@@ -149,7 +149,16 @@ namespace linear_algebra {
             
             friend std::ostream& operator<<(std::ostream&, const StaticMatrixBase&);
     };
-
+    template <class ElemT, SizeT Rows, SizeT Cols>
+    auto operator+(const StaticMatrixBase<ElemT, Rows, Cols>& matrix) {
+        return matrix;
+    }
+    template <class ElemT, SizeT Rows, SizeT Cols>
+    auto operator-(const StaticMatrixBase<ElemT, Rows, Cols>& matrix) {
+        auto tmp = matrix;
+        tmp *= -1;
+        return tmp;
+    }
     template <class ElemT_L, SizeT Rows_L, SizeT Cols_L, class ElemT_R, SizeT Rows_R, SizeT Cols_R>
     auto operator+(
         const StaticMatrixBase<ElemT_L, Rows_L, Cols_L>& lhs,
@@ -182,8 +191,66 @@ namespace linear_algebra {
         const StaticMatrixBase<ElemT_R, Rows_R, Cols_R>& rhs
     ) {
         auto tmp = rhs;
-        return lhs + (tmp *= -1);
+        return lhs + (-tmp);
     }
+    template <class ElemT_L, SizeT Rows_L, SizeT Cols_L, class ElemT_R, SizeT Rows_R, SizeT Cols_R>
+    auto operator*(
+        const StaticMatrixBase<ElemT_L, Rows_L, Cols_L>& lhs,
+        const StaticMatrixBase<ElemT_R, Rows_R, Cols_R>& rhs
+    ) {
+        static_assert(Cols_L == Rows_R);
+        static_assert(HasCommonTypeWith<ElemT_L, ElemT_R>);
+
+        using CommonType = CommonTypeOf<ElemT_L, ElemT_R>;
+
+        constexpr SizeT Rows = Rows_L;
+        constexpr SizeT Cols = Cols_R;
+        constexpr SizeT Mids = Rows_R;
+
+        StaticMatrixBase<CommonType, Rows_L, Cols_R> result;
+        for(SizeT r = 0; r < Rows; ++r) {
+            for(SizeT c = 0; c < Cols; ++c) {
+                for(SizeT m = 0; m < Mids; ++m) {
+                    if constexpr(IsMultiplicationDefined<ElemT_L, ElemT_R>) {
+                        result(r, c) += static_cast<CommonType>(lhs(r, m) * rhs(m, c));
+                    } else {
+                        static_assert(IsMultiplicationDefined<CommonType, CommonType>);
+                        result(r, c) += static_cast<CommonType>(lhs(r, m)) * static_cast<CommonType>(rhs(m, c));
+                    }
+                }
+            }
+        }
+        return result;
+    }
+    template <class ElemT, SizeT Rows, SizeT Cols, class ScalarType>
+    auto operator*(
+        const StaticMatrixBase<ElemT, Rows, Cols>& lhs,
+        const ScalarType& rhs
+    ) {
+        auto tmp = lhs;
+        tmp *= rhs;
+        return tmp;
+    }
+    template <class ElemT, SizeT Rows, SizeT Cols, class ScalarType>
+    auto operator*(
+        const ScalarType& lhs,
+        const StaticMatrixBase<ElemT, Rows, Cols>& rhs
+    ) {
+        auto tmp = rhs;
+        tmp *= lhs;
+        return tmp;
+    }
+    template <class ElemT, SizeT Rows, SizeT Cols, class ScalarType>
+    auto operator/(
+        const StaticMatrixBase<ElemT, Rows, Cols>& lhs,
+        const ScalarType& rhs
+    ) {
+        auto tmp = lhs;
+        tmp /= rhs;
+        return tmp;
+    }
+
+
 
     template <class ElemT, SizeT Rows, SizeT Cols>
     std::ostream& operator<<(std::ostream& out, const StaticMatrixBase<ElemT, Rows, Cols>& input_matrix) {

@@ -84,16 +84,31 @@ TEST(LinearAlgebraTest, StaticMatrixBaseOperatorTest) {
     StaticMatrixBase<double, 2, 3>  m2 = {1, 2, 3, 4, 5, 6};
     StaticMatrixBase<double, 2, 3>  m3 = {2, 4, 6, 8, 10, 12};
     StaticMatrixBase<double, 2, 3>  m4;
+    StaticMatrixBase<double, 3, 4>  m5 = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12};
+    StaticMatrixBase<double, 2, 4>  m6 = {38, 44, 50, 56, 83, 98, 113, 128};
 
-    //std::cout << m1 << m2 << std::endl;
-    const auto m1pm2 = m1 + m2;
-    //std::cout << m1pm2 << std::endl;
+    const auto plus = m1 + m2;
     for(std::size_t i = 0; i < m1.shape().row() * m1.shape().col(); ++i) {
-        assert(m1pm2.at(i) == m3.at(i));
+        assert(plus.at(i) == m3.at(i));
     }
-    const auto m3mm1pm2 = m3 - m1pm2;
-    //std::cout << m3mm1pm2 << std::endl;
+    const auto minus = m3 - plus;
     for(std::size_t i = 0; i < m3.shape().row() * m3.shape().col(); ++i) {
-        assert(m3mm1pm2.at(i) == m4.at(i));
+        assert(minus.at(i) == m4.at(i));
+    }
+    const auto mul = m1 * m5;
+    for(std::size_t i = 0; i < mul.shape().row() * mul.shape().col(); ++i) {
+        assert(mul.at(i) == m6.at(i));
+    }
+    const auto mul2 = m2 * 2;
+    for(std::size_t i = 0; i < mul2.shape().row() * mul2.shape().col(); ++i) {
+        assert(mul2.at(i) == m3.at(i));
+    }
+    const auto mul3 = 2 * m2;
+    for(std::size_t i = 0; i < mul3.shape().row() * mul3.shape().col(); ++i) {
+        assert(mul3.at(i) == m3.at(i));
+    }
+    const auto mul4 = m3 / 2;
+    for(std::size_t i = 0; i < mul4.shape().row() * mul4.shape().col(); ++i) {
+        assert(mul4.at(i) == m2.at(i));
     }
 }
