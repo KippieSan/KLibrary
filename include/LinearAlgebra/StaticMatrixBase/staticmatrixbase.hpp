@@ -12,7 +12,7 @@ namespace linear_algebra {
         private:
             Array<ElemT, Rows * Cols> matrix_;
         public:
-            StaticMatrixBase(const ElemT& elem = 0) {
+            StaticMatrixBase(const ElemT& elem = ElemT()) {
                 this->matrix_.fill(elem);
             }
             StaticMatrixBase(std::initializer_list<std::initializer_list<ElemT>>&& input_matrix) {
@@ -146,7 +146,42 @@ namespace linear_algebra {
                 return (*this);
             }
 
-            
+            static StaticMatrixBase Zero() {
+                return StaticMatrixBase<ElemT, Rows, Cols>();
+            }
+            static StaticMatrixBase One() {
+                return StaticMatrixBase<ElemT, Rows, Cols>(ElemT(1));
+            }
+            static StaticMatrixBase I() {
+                static_assert(Rows == Cols);
+                StaticMatrixBase<ElemT, Rows, Cols> identity_matrix;
+                for(SizeT i = 0; i < Rows; ++i) {
+                    identity_matrix(i, i) = ElemT(1);
+                }
+                return identity_matrix;
+            }
+            static StaticMatrixBase Diag(std::initializer_list<ElemT>&& elements_initializer_list) {
+                static_assert(Rows == Cols);
+                assert(elements_initializer_list.size() == Rows);
+                StaticMatrixBase<ElemT, Rows, Cols> diagonal_matrix;
+                SizeT i = 0;
+                for(const auto& element : elements_initializer_list) {
+                    diagonal_matrix(i, i) = element;
+                    ++i;
+                }
+                return diagonal_matrix;
+            }
+            static StaticMatrixBase Diag(const Array<ElemT, Rows>& elements_array) {
+                static_assert(Rows == Cols);
+                assert(elements_array.size() == Rows);
+                StaticMatrixBase<ElemT, Rows, Cols> diagonal_matrix;
+                SizeT i = 0;
+                for(const auto& element : elements_array) {
+                    diagonal_matrix(i, i) = element;
+                    ++i;
+                }
+                return diagonal_matrix;
+            }
             friend std::ostream& operator<<(std::ostream&, const StaticMatrixBase&);
     };
     template <class ElemT, SizeT Rows, SizeT Cols>
@@ -249,8 +284,6 @@ namespace linear_algebra {
         tmp /= rhs;
         return tmp;
     }
-
-
 
     template <class ElemT, SizeT Rows, SizeT Cols>
     std::ostream& operator<<(std::ostream& out, const StaticMatrixBase<ElemT, Rows, Cols>& input_matrix) {

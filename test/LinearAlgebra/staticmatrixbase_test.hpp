@@ -112,3 +112,47 @@ TEST(LinearAlgebraTest, StaticMatrixBaseOperatorTest) {
         assert(mul4.at(i) == m2.at(i));
     }
 }
+TEST(LinearAlgebraTest, StaticMatrixBaseStaticFunctionTest) {
+    std::array<int, 3> diag1_test = {1, 2, 3};
+    std::array<double, 3> elements_array = {2.0, 1.0, 2.0};
+    // static関数のテスト
+    const auto zero = StaticMatrixBase<int, 3, 2>::Zero();
+    const auto one = StaticMatrixBase<int, 4, 1>::One();
+    const auto identity = StaticMatrixBase<int, 3, 3>::I();
+    const auto diag1 = StaticMatrixBase<int, 3, 3>::Diag({1, 2, 3});
+    const auto diag2 = StaticMatrixBase<double, 3, 3>::Diag(elements_array);
+
+    for(std::size_t i = 0; i < 6; ++i) {
+        assert(zero.at(i) == 0);
+    }
+    for(std::size_t i = 0; i < 4; ++i) {
+        assert(one.at(i) == 1);
+    }
+    for(std::size_t i = 0; i < 3; ++i) {
+        for(std::size_t j = 0; j < 3; ++j) {
+            if(i == j) {
+                assert(identity(i, j) == 1);
+            } else {
+                assert(identity(i, j) == 0);
+            }
+        }
+    }
+    for(std::size_t i = 0; i < 3; ++i) {
+        for(std::size_t j = 0; j < 3; ++j) {
+            if(i == j) {
+                assert(diag1(i, j) == diag1_test.at(i));
+            } else {
+                assert(diag1(i, j) == 0);
+            }
+        }
+    }
+    for(std::size_t i = 0; i < 3; ++i) {
+        for(std::size_t j = 0; j < 3; ++j) {
+            if(i == j) {
+                assert(diag2(i, j) == elements_array.at(i));
+            } else {
+                assert(diag2(i, j) == 0);
+            }
+        }
+    }
+}
