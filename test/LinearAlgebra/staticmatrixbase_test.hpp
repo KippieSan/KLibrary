@@ -6,10 +6,15 @@ namespace {
     using namespace linear_algebra;
 }
 TEST(LinearAlgebraTest, StaticMatrixBaseConstructorTest) {
-    // 全ての値を0で初期化
-    StaticMatrixBase<int, 3, 3> dm1(0);
+    // デフォルトコンストラクタ
+    StaticMatrixBase<int, 3, 3> dm1;
     for(std::size_t i = 0; i < 9; ++i) {
         assert(dm1.at(i) == 0);
+    }
+    // 全ての要素を5で初期化
+    StaticMatrixBase<int, 4, 5> cm1(5);
+    for(std::size_t i = 0; i < 20; ++i) {
+        assert(cm1.at(i) == 5);
     }
     // initializer_listによる初期化
     StaticMatrixBase<int, 3, 3> ini_m1 = {{1, 2, 3}, {2, 3, 4}, {3, 4, 5}};
