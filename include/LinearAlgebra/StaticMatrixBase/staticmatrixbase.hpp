@@ -53,7 +53,15 @@ namespace linear_algebra {
                 std::copy(input_matrix.begin(), input_matrix.end(), this->matrix_.begin());
             }
             StaticMatrixBase(const StaticMatrixBase<ElemT, Rows, Cols>& input): matrix_(input.matrix_){}
-            StaticMatrixBase(StaticMatrixBase<ElemT, Rows, Cols>&& input): matrix_(input.matrix_){}
+            StaticMatrixBase(StaticMatrixBase<ElemT, Rows, Cols>&& input): matrix_(std::move(input.matrix_)){}
+            StaticMatrixBase& operator=(const StaticMatrixBase<ElemT, Rows, Cols>& input) {
+                this->matrix_ = input.matrix_;
+                return (*this);
+            }
+            StaticMatrixBase& operator=(StaticMatrixBase<ElemT, Rows, Cols>&& input) {
+                std::move(input.matrix_.begin(), input.matrix_.end(), this->matrix_.begin());
+                return (*this);
+            }
 
             const ElemT& operator()(const SizeT& r, const SizeT& c) const {
                 assert(r < Rows);
