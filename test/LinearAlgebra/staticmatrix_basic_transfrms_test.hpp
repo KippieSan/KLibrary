@@ -68,8 +68,8 @@ TEST(LinearAlgebraTest, StaticMatrixBasicTransformsTranposeTest) {
             assert(m1_transposed2.at(4 * r + c) == m1_test.at(4 * r + c));
         }
     }
-    const auto m2_transposed = m2.transpose();
+    m2.transpose();
     for(std::size_t i = 0; i < 9; ++i) {
-        assert(m2_transposed.at(i) == m2_test.at(i));
+        assert(m2.at(i) == m2_test.at(i));
     }
 }
