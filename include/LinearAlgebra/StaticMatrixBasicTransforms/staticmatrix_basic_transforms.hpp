@@ -3,29 +3,6 @@
 #include "./../StaticMatrixBase/staticmatrixbase_alias_and_concepts.hpp"
 #include "./../StaticMatrixBase/staticmatrixbase.hpp"
 namespace linear_algebra {
-    /*
-     * ## `StaticMatrixBasicTransforms<ElemT, Rows, Cols>`
-     * コンパイル時にサイズが決定される行列についてその基本的な変形を行う。
-     * 行列の変形を行う関数にはstatic版とin-place版が存在し、
-     * 
-     * ```cpp
-     * StaticMatrixBasicTransforms<int, 2, 3> m1;
-     * StaticMatrixBasicTransforms<int, 3, 3> m2;
-     * ```
-     * 
-     * とおくと、static版は
-     * 
-     * ```cpp
-     * auto static_m1 = StaticMatrixBasicTransforms<int, 2, 3>::Transpose(m1);
-     * ```
-     * 
-     * in-place版は
-     * 
-     * ```cpp
-     * auto in_place_m2 = m2.transpose()
-     * ```
-     * 
-     */
     template <class ElemT, SizeT Rows, SizeT Cols>
     class StaticMatrixBasicTransforms : public StaticMatrixBase<ElemT, Rows, Cols> {
         public:
