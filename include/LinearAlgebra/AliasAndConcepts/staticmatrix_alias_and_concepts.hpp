@@ -1,5 +1,5 @@
-#ifndef staticmatrixbase_alias_and_concepts_hpp
-#define staticmatrixbase_alias_and_concepts_hpp
+#ifndef staticmatrix_alias_and_concepts_hpp
+#define staticmatrix_alias_and_concepts_hpp
 #include <concepts>
 #include <cstddef>
 #include <array>
@@ -39,4 +39,4 @@ namespace linear_algebra {
         {a / b};
     };
 }
-#endif // staticmatrixbase_alias_and_concepts_hpp
+#endif // staticmatrix_alias_and_concepts_hpp

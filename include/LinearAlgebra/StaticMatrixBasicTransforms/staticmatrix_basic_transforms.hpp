@@ -1,6 +1,6 @@
 #ifndef staticmatrix_basic_transforms_hpp
 #define staticmatrix_basic_transforms_hpp
-#include "./../StaticMatrixBase/staticmatrixbase_alias_and_concepts.hpp"
+#include "./../AliasAndConcepts/staticmatrix_alias_and_concepts.hpp"
 #include "./../StaticMatrixBase/staticmatrixbase.hpp"
 namespace linear_algebra {
     template <class ElemT, SizeT Rows, SizeT Cols>

@@ -1,7 +1,7 @@
 #ifndef staticmatrixbase_hpp
 #define staticmatrixbase_hpp
 #include "staticmatrixbase_shape.hpp"
-#include "staticmatrixbase_alias_and_concepts.hpp"
+#include "./../AliasAndConcepts/staticmatrix_alias_and_concepts.hpp"
 #include <array>
 #include <cassert>
 #include <iostream>
