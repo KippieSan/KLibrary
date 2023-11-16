@@ -3,7 +3,7 @@
 #include <concepts>
 #include <cstddef>
 #include <array>
-namespace linear_algebra {
+namespace klibrary::linear_algebra {
     // 添え字に使用する型の定義
     using SizeT = std::size_t;
     // 配列型の定義

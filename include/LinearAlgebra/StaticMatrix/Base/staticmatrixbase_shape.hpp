@@ -1,7 +1,7 @@
 #ifndef staticmatrixbase_shape_hpp
 #define staticmatrixbase_shape_hpp
 #include <cstddef>
-namespace linear_algebra {
+namespace klibrary::linear_algebra {
     class MatrixBaseShape {
         private:
             std::size_t row_;

@@ -1,9 +1,9 @@
 #include <gtest/gtest.h>
 #include <array>
 #include <iostream>
-#include "../../include/LinearAlgebra/StaticMatrixBasicTransforms/staticmatrix_basic_transforms.hpp"
+#include "./../../include/LinearAlgebra/StaticMatrix/BasicTransforms/staticmatrix_basic_transforms.hpp"
 namespace {
-    using namespace linear_algebra;
+    using namespace klibrary::linear_algebra;
 }
 TEST(LinearAlgebraTest, StaticMatrixBasicTransformsConstructorTest) {
     // デフォルトコンストラクタ

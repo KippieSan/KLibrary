@@ -6,7 +6,7 @@
 #include <cassert>
 #include <iostream>
 #include <concepts>
-namespace linear_algebra {
+namespace klibrary::linear_algebra {
     template <class ElemT, SizeT Rows, SizeT Cols>
     class StaticMatrixBase {
         private:
