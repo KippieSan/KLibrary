@@ -8,7 +8,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: reset build
+    - name: delete build directory
       run: rm -r ./build
     - name: run release build
       run: |
@@ -18,3 +18,5 @@ jobs:
       run: |
         cd ${{ github.workspace }}
         ./build/test/test_all
+    - name: delete CMakeCache
+      run: rm ./build/CMakeCache.txt
