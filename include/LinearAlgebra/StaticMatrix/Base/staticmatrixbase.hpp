@@ -174,8 +174,6 @@ namespace klibrary::linear_algebra {
                 }
                 return;
             }
-            
-            friend std::ostream& operator<<<>(std::ostream&, const StaticMatrixBase&);
     };
     template <class ElemT, SizeT Rows, SizeT Cols>
     auto operator+(const StaticMatrixBase<ElemT, Rows, Cols>& matrix) {
@@ -280,11 +278,10 @@ namespace klibrary::linear_algebra {
 
     template <class ElemT, SizeT Rows, SizeT Cols>
     std::ostream& operator<<(std::ostream& out, const StaticMatrixBase<ElemT, Rows, Cols>& input_matrix) {
-        const auto& matrix = input_matrix.matrix_;
         for(SizeT r = 0; r < Rows; ++r) {
             out << "{ ";
             for(SizeT c = 0; c < Cols; ++c) {
-                out << matrix.at(Cols * r + c) << (c < Cols - 1 ? ", " : " ");
+                out << input_matrix(r, c) << (c < Cols - 1 ? ", " : " ");
             }
             out << (r < Rows - 1 ? "}," : "}") << std::endl;
         }
