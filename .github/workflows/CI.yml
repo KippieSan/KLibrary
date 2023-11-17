@@ -22,6 +22,6 @@ jobs:
         ./build/test/test_all
     - name: delete CMakeCache
       run: |
-        rm ./build/CMakeCache.txt
-        cd /home/../
         ls
+        rm ./build/CMakeCache.txt
+        
