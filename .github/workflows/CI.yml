@@ -10,7 +10,6 @@ jobs:
     - uses: actions/checkout@v2
     - name: delete build directory
       run: |
-        ls
         rm -r ./build
     - name: run release build
       run: |
@@ -20,8 +19,3 @@ jobs:
       run: |
         cd ${{ github.workspace }}
         ./build/test/test_all
-    - name: delete CMakeCache
-      run: |
-        ls
-        rm ./build/CMakeCache.txt
-        
