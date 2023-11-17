@@ -1,15 +1,16 @@
 #include <gtest/gtest.h>
 #include <array>
 #include <iostream>
+#include <random>
+#include <chrono>
 #include "./../../include/LinearAlgebra/StaticMatrix/Base/staticmatrixbase.hpp"
 namespace {
     using namespace klibrary::linear_algebra;
 }
 TEST(LinearAlgebraTest, StaticMatrixBaseConstructorTest) {
-    // デフォルトコンストラクタ
     StaticMatrixBase<int, 3, 3> dm1;
     StaticMatrixBase<int, 4, 5> cm1(5);
-    StaticMatrixBase<int, 3, 3> ini_m1 = {{1, 2, 3}, {2, 3, 4}, {3, 4, 5}};
+    StaticMatrixBase<int, 3, 3> ini_m1 = {{1, 2, 5}, {8, 10, 2}, {4, 4, 4}};
     StaticMatrixBase<int, 2, 2> ini_m2 = {1, 2, 3, 4};
     std::array<std::array<int, 2>, 3> arr1 = {{{1, 2}, {2, 3}, {1, 2}}};
     StaticMatrixBase<int, 3, 2> arr_m1 = arr1;
@@ -26,7 +27,7 @@ TEST(LinearAlgebraTest, StaticMatrixBaseConstructorTest) {
     for(std::size_t i = 0; i < 20; ++i) {
         assert(cm1.at(i) == 5);
     }
-    int ini_m1_test[9] = {1, 2, 3, 2, 3, 4, 3, 4, 5};
+    int ini_m1_test[9] = {1, 2, 5, 8, 10, 2, 4, 4, 4};
     for(std::size_t i = 0; i < 9; ++i) {
         assert(ini_m1.at(i) == ini_m1_test[i]);
     }
@@ -52,7 +53,6 @@ TEST(LinearAlgebraTest, StaticMatrixBaseConstructorTest) {
     }
 }
 TEST(LinearAlgebraTest, StaticMatrixBaseAssignmentOperatorTest) {
-    // 代入演算子のテスト
     StaticMatrixBase<int, 3, 3>       m1 = {1, 2, 3, 4, 5, 6, 7, 8, 9};
     StaticMatrixBase<int, 3, 3>       m2 = {9, 8, 7, 6, 5, 4, 3, 2, 1};
     StaticMatrixBase<double, 3, 3>    m3 = {9, 8, 7, 6, 5, 4, 3, 2, 1};
@@ -80,7 +80,6 @@ TEST(LinearAlgebraTest, StaticMatrixBaseAssignmentOperatorTest) {
     }
 }
 TEST(LinearAlgebraTest, StaticMatrixBaseOperatorTest) {
-    // 二項演算子のテスト
     StaticMatrixBase<int, 2, 3>     m1 = {1, 2, 3, 4, 5, 6};
     StaticMatrixBase<double, 2, 3>  m2 = {1, 2, 3, 4, 5, 6};
     StaticMatrixBase<double, 2, 3>  m3 = {2, 4, 6, 8, 10, 12};
@@ -111,5 +110,19 @@ TEST(LinearAlgebraTest, StaticMatrixBaseOperatorTest) {
     const auto mul4 = m3 / 2;
     for(std::size_t i = 0; i < mul4.shape().row() * mul4.shape().col(); ++i) {
         assert(mul4.at(i) == m2.at(i));
+    }
+}
+TEST(LinearAlgebraTest, StaticMatrixBaseSwapTest) {
+    // swap_colsはswap_rowsよりも4倍ほど遅い
+    StaticMatrixBase<int, 3, 5> a = {{1, 2, 3, 4, 5}, {2, 3, 4, 5, 6}, {6, 7, 8, 9, 0}};
+    StaticMatrixBase<int, 3, 5> a_swap_rows_test = {{6, 7, 8, 9, 0}, {2, 3, 4, 5, 6}, {1, 2, 3, 4, 5}};
+    StaticMatrixBase<int, 3, 5> a_swap_cols_test = {{9, 7, 8, 6, 0}, {5, 3, 4, 2, 6}, {4, 2, 3, 1, 5}};
+    a.swap_rows(0, 2);
+    for(std::size_t i = 0; i < 15; ++i) {
+        assert(a.at(i) == a_swap_rows_test.at(i));
+    }
+    a.swap_cols(0, 3);
+    for(std::size_t i = 0; i < 15; ++i) {
+        assert(a.at(i) == a_swap_cols_test.at(i));
     }
 }

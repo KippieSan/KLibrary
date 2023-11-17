@@ -154,43 +154,28 @@ namespace klibrary::linear_algebra {
                 return (*this);
             }
 
-            static StaticMatrixBase Zero() {
-                return StaticMatrixBase<ElemT, Rows, Cols>();
+            void swap_rows(const SizeT& r1, const SizeT& r2) {
+                assert(r1 < Rows && r2 < Rows);
+                std::array<ElemT, Cols> temp;
+                auto r1_begin = std::next(this->matrix_.begin(), r1 * Cols);
+                auto r2_begin = std::next(this->matrix_.begin(), r2 * Cols);
+                auto r1_end = (r1 == Rows - 1) ? this->matrix_.end() : std::next(this->matrix_.begin(), (r1 + 1) * Cols);
+                auto r2_end = (r2 == Rows - 1) ? this->matrix_.end() : std::next(this->matrix_.begin(), (r2 + 1) * Cols);
+                
+                std::move(r1_begin, r1_end, temp.begin());
+                std::move(r2_begin, r2_end, r1_begin);
+                std::move(temp.begin(), temp.end(), r2_begin);
+                return;
             }
-            static StaticMatrixBase One() {
-                return StaticMatrixBase<ElemT, Rows, Cols>(ElemT(1));
-            }
-            static StaticMatrixBase I() {
-                static_assert(Rows == Cols);
-                StaticMatrixBase<ElemT, Rows, Cols> identity_matrix;
-                for(SizeT i = 0; i < Rows; ++i) {
-                    identity_matrix(i, i) = ElemT(1);
+            void swap_cols(const SizeT& c1, const SizeT& c2) {
+                assert(c1 < Cols && c2 < Cols);
+                for(SizeT r = 0; r < Rows; ++r) {
+                    std::swap(this->matrix_.at(r * Cols + c1), this->matrix_.at(r * Cols + c2));
                 }
-                return identity_matrix;
+                return;
             }
-            static StaticMatrixBase Diag(std::initializer_list<ElemT>&& elements_initializer_list) {
-                static_assert(Rows == Cols);
-                assert(elements_initializer_list.size() == Rows);
-                StaticMatrixBase<ElemT, Rows, Cols> diagonal_matrix;
-                SizeT i = 0;
-                for(const auto& element : elements_initializer_list) {
-                    diagonal_matrix(i, i) = element;
-                    ++i;
-                }
-                return diagonal_matrix;
-            }
-            static StaticMatrixBase Diag(const Array<ElemT, Rows>& elements_array) {
-                static_assert(Rows == Cols);
-                assert(elements_array.size() == Rows);
-                StaticMatrixBase<ElemT, Rows, Cols> diagonal_matrix;
-                SizeT i = 0;
-                for(const auto& element : elements_array) {
-                    diagonal_matrix(i, i) = element;
-                    ++i;
-                }
-                return diagonal_matrix;
-            }
-            friend std::ostream& operator<<(std::ostream&, const StaticMatrixBase&);
+            
+            friend std::ostream& operator<<<>(std::ostream&, const StaticMatrixBase&);
     };
     template <class ElemT, SizeT Rows, SizeT Cols>
     auto operator+(const StaticMatrixBase<ElemT, Rows, Cols>& matrix) {
@@ -299,7 +284,7 @@ namespace klibrary::linear_algebra {
         for(SizeT r = 0; r < Rows; ++r) {
             out << "{ ";
             for(SizeT c = 0; c < Cols; ++c) {
-                out << matrix.at(Rows * r + c) << (c < Cols - 1 ? ", " : " ");
+                out << matrix.at(Cols * r + c) << (c < Cols - 1 ? ", " : " ");
             }
             out << (r < Rows - 1 ? "}," : "}") << std::endl;
         }
