@@ -82,7 +82,7 @@ namespace klibrary::linear_algebra {
             }
 
             template <class ElemT_R, SizeT Rows_R, SizeT Cols_R>
-            StaticMatrixBase& operator+=(const StaticMatrixBase<ElemT_R, Rows_R, Cols_R>& matrix) {
+            auto& operator+=(const StaticMatrixBase<ElemT_R, Rows_R, Cols_R>& matrix) {
                 static_assert(Rows == Rows_R);
                 static_assert(Cols == Cols_R);
                 static_assert(IsConvertibleTo<ElemT_R, ElemT>);
@@ -93,7 +93,7 @@ namespace klibrary::linear_algebra {
                 return (*this);
             }
             template <class ElemT_R, SizeT Rows_R, SizeT Cols_R>
-            StaticMatrixBase& operator-=(const StaticMatrixBase<ElemT_R, Rows_R, Cols_R>& matrix) {
+            auto& operator-=(const StaticMatrixBase<ElemT_R, Rows_R, Cols_R>& matrix) {
                 static_assert(Rows == Rows_R);
                 static_assert(Cols == Cols_R);
                 static_assert(IsConvertibleTo<ElemT_R, ElemT>);
@@ -104,7 +104,7 @@ namespace klibrary::linear_algebra {
                 return (*this);
             }
             template <class ElemT_R, SizeT Rows_R, SizeT Cols_R>
-            StaticMatrixBase& operator*=(const StaticMatrixBase<ElemT_R, Rows_R, Cols_R>& matrix) {
+            auto& operator*=(const StaticMatrixBase<ElemT_R, Rows_R, Cols_R>& matrix) {
                 static_assert(Rows == Cols);        // 左オペランドは正方行列であるか
                 static_assert(Rows_R == Cols_R);    // 右オペランドは正方行列であるか
                 static_assert(Rows == Rows_R);      // 行列の次数は等しいか
@@ -127,7 +127,7 @@ namespace klibrary::linear_algebra {
                 return (*this);
             }
             template <class ScalarType>
-            StaticMatrixBase& operator*=(const ScalarType& scalar) {
+            auto& operator*=(const ScalarType& scalar) {
                 static_assert(std::convertible_to<ScalarType, ElemT>);
 
                 for(SizeT i = 0; i < Rows * Cols; ++i) {
@@ -140,7 +140,7 @@ namespace klibrary::linear_algebra {
                 return (*this);
             }
             template <class ScalarType>
-            StaticMatrixBase& operator/=(const ScalarType& scalar) {
+            auto& operator/=(const ScalarType& scalar) {
                 static_assert(std::convertible_to<ScalarType, ElemT>);
                 assert(scalar != ScalarType());
 
