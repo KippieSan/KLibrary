@@ -54,11 +54,11 @@ namespace klibrary::linear_algebra {
             }
             StaticMatrixBase(const StaticMatrixBase<ElemT, Rows, Cols>& input): matrix_(input.matrix_){}
             StaticMatrixBase(StaticMatrixBase<ElemT, Rows, Cols>&& input): matrix_(std::move(input.matrix_)){}
-            StaticMatrixBase& operator=(const StaticMatrixBase<ElemT, Rows, Cols>& input) {
+            auto& operator=(const StaticMatrixBase<ElemT, Rows, Cols>& input) {
                 this->matrix_ = input.matrix_;
                 return (*this);
             }
-            StaticMatrixBase& operator=(StaticMatrixBase<ElemT, Rows, Cols>&& input) {
+            auto& operator=(StaticMatrixBase<ElemT, Rows, Cols>&& input) {
                 std::move(input.matrix_.begin(), input.matrix_.end(), this->matrix_.begin());
                 return (*this);
             }
