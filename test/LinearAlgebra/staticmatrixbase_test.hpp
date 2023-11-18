@@ -1,8 +1,6 @@
 #include <gtest/gtest.h>
 #include <array>
 #include <iostream>
-#include <random>
-#include <chrono>
 #include "./../../include/LinearAlgebra/StaticMatrix/Base/staticmatrixbase.hpp"
 namespace {
     using namespace klibrary::linear_algebra;
