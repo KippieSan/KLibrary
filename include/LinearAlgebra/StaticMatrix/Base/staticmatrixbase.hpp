@@ -11,10 +11,6 @@ namespace klibrary::linear_algebra {
     class StaticMatrixBase {
         private:
             Array<ElemT, Rows * Cols> matrix_;
-
-            const ElemT& operator[](const SizeT& i) const {
-                return this->matrix_[i];
-            }
         public:
             StaticMatrixBase(const ElemT& elem = ElemT()) {
                 this->matrix_.fill(elem);
@@ -76,6 +72,9 @@ namespace klibrary::linear_algebra {
                 assert(r < Rows);
                 assert(c < Cols);
                 return this->matrix_[Cols * r + c];
+            }
+            const ElemT& operator[](const SizeT& i) const {
+                return this->matrix_[i];
             }
             const ElemT& at(const SizeT& i) const {
                 assert(i < Rows * Cols);
