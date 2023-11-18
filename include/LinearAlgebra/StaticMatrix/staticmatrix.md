@@ -4,6 +4,31 @@
 
 テンプレートパラメータは行列要素の型(`ElemT`)、行数(`Rows`)、列数(`Cols`)である。
 
+## AliasAndConcepts
+`StaticMatrix`で使用される型エイリアスやコンセプトが記述されている。
+
+```cpp
+using SizeT = std::size_t;                                                              // (1)
+using Array = std::array<ElemT, size>;                                                  // (2)
+concept HasCommonTypeWith = std::common_with<T, U>;                                     // (3)
+using CommonTypeOf = std::common_type<T, U>::type;                                      // (4)
+concept IsConvertibleTo = std::convertible_to<From, To>;                                // (5)
+concept IsAdditionDefined = requires(Operand_L a, Operand_R b);                         // (6)
+concept IsSubtractionDefined = requires(Operand_L a, Operand_R b);                      // (7)
+concept IsMultiplicationDefined = requires(Operand_L a, Operand_R b);                   // (8)
+concept IsDivisionDefined = requires(Operand_L a, Operand_R b);                         // (9)
+```
+
+- (1) 要素数や添え字に使用される型エイリアス
+- (2) `std::array`の型エイリアス
+- (3) `T`と`U`から変換可能な共通の型が存在するかを判定するコンセプト
+- (4) `T`と`U`から変換可能な共通の型を表す型エイリアス
+- (5) `From`から`To`へ型変換することが可能であるかを判定するコンセプト
+- (6) `Operand_L`と`Operand_R`の間に加算が定義されているかを判定するコンセプト
+- (7) `Operand_L`と`Operand_R`の間に減算が定義されているかを判定するコンセプト
+- (8) `Operand_L`と`Operand_R`の間に乗算が定義されているかを判定するコンセプト
+- (9) `Operand_L`と`Operand_R`の間に除算が定義されているかを判定するコンセプト
+
 ## Base
 
 コンストラクタ及び基本的な機能が実装されている。
@@ -186,3 +211,24 @@ auto transpose();                                                               
 
 - (1) `input`の転置行列を返す
 - (2) `*this`の転置を取り、これを返す
+
+## BasicMatrices
+
+`StaticMatrixBase`をpublic継承する。
+基本的な行列を返すいくつかの静的関数が定義されている。
+
+```cpp
+static StaticMatrixBasicMatrices Zero();                                                // (1)
+static StaticMatrixBasicMatrices One();                                                 // (2)
+static StaticMatrixBasicMatrices I();                                                   // (3)
+static StaticMatrixBasicMatrices Scalar(const ElemT& a = ElemT());                      // (4)
+static StaticMatrixBasicMatrices Diag(std::initializer_list<ElemT>&&);                  // (5)
+static StaticMatrixBasicMatrices Diag(const Array<ElemT, Rows>&);                       // (6)
+```
+
+- (1) 全ての要素が`0`である行列を返す
+- (2) 全ての要素が`1`である行列を返す
+- (3) 単位行列を返す
+- (4) 単位行列にスカラー`a`を掛けたスカラー行列を返す
+- (5) `initializer_list`を対角成分とする対角行列を返す
+- (6) `std::array`を対角成分とする対角行列を返す
