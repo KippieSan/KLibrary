@@ -87,7 +87,7 @@ auto operator-(const StaticMatrixBase& matrix);                                 
 ```
 
 - (1) `matrix`をそのまま返す
-- (2) 全要素に$-1$を掛けて返す。
+- (2) 全要素に`-1`を掛けて返す。
 
 #### 算術演算子
 
@@ -138,8 +138,8 @@ const ElemT& operator()(const SizeT& r, const SizeT& c) const;                  
 ElemT& operator()(const SizeT& r, const SizeT& c);                                      // (2)
 ```
 
-- (1) r行c列の要素へ変更不可なアクセス
-- (2) r行c列の要素へ変更可能なアクセス
+- (1) `r`行`c`列の要素へ変更不可なアクセス
+- (2) `r`行`c`列の要素へ変更可能なアクセス
 
 #### 添え字演算子
 
