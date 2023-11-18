@@ -8,7 +8,7 @@ namespace klibrary::linear_algebra {
         public:
             using StaticMatrixBase<ElemT, Rows, Cols>::StaticMatrixBase;
 
-            static StaticMatrixBasicTransforms<ElemT, Cols, Rows> Transpose(const StaticMatrixBasicTransforms& input) {
+            static auto Transpose(const StaticMatrixBasicTransforms& input) {
                 StaticMatrixBasicTransforms<ElemT, Cols, Rows> output;
                 for(SizeT r = 0; r < Rows; ++r) {
                     for(SizeT c = 0; c < Cols; ++c) {
@@ -17,7 +17,7 @@ namespace klibrary::linear_algebra {
                 }
                 return output;
             }
-            StaticMatrixBasicTransforms<ElemT, Cols, Rows> transpose() {
+            auto transpose() {
                 static_assert(Rows == Cols);
                 for(SizeT r = 0; r < Rows; ++r) {
                     for(SizeT c = r; c < Cols; ++c) {
