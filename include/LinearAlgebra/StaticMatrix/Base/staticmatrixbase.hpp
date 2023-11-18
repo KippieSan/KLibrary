@@ -66,16 +66,19 @@ namespace klibrary::linear_algebra {
             const ElemT& operator()(const SizeT& r, const SizeT& c) const {
                 assert(r < Rows);
                 assert(c < Cols);
-                return this->matrix_.at(Cols * r + c);
+                return this->matrix_[Cols * r + c];
             }
             ElemT& operator()(const SizeT& r, const SizeT& c) {
                 assert(r < Rows);
                 assert(c < Cols);
-                return this->matrix_.at(Cols * r + c);
+                return this->matrix_[Cols * r + c];
+            }
+            const ElemT& operator[](const SizeT& i) const {
+                return this->matrix_[i];
             }
             const ElemT& at(const SizeT& i) const {
                 assert(i < Rows * Cols);
-                return this->matrix_.at(i);
+                return this->matrix_[i];
             }
             constexpr MatrixBaseShape shape() const noexcept {
                 return MatrixBaseShape(Rows, Cols);
@@ -96,7 +99,7 @@ namespace klibrary::linear_algebra {
             void swap_cols(const SizeT& c1, const SizeT& c2) {
                 assert(c1 < Cols && c2 < Cols);
                 for(SizeT r = 0; r < Rows; ++r) {
-                    std::swap(this->matrix_.at(r * Cols + c1), this->matrix_.at(r * Cols + c2));
+                    std::swap(this->matrix_[r * Cols + c1], this->matrix_[r * Cols + c2]);
                 }
                 return;
             }
@@ -107,7 +110,7 @@ namespace klibrary::linear_algebra {
                 static_assert(IsConvertibleTo<ElemT_R, ElemT>);
 
                 for(SizeT i = 0; i < Rows * Cols; ++i) {
-                    this->matrix_.at(i) += static_cast<ElemT>(matrix.at(i));
+                    this->matrix_[i] += static_cast<ElemT>(matrix[i]);
                 }
                 return (*this);
             }
@@ -118,7 +121,7 @@ namespace klibrary::linear_algebra {
                 static_assert(IsConvertibleTo<ElemT_R, ElemT>);
 
                 for(SizeT i = 0; i < Rows * Cols; ++i) {
-                    this->matrix_.at(i) -= static_cast<ElemT>(matrix.at(i));
+                    this->matrix_[i] -= static_cast<ElemT>(matrix[i]);
                 }
                 return (*this);
             }
@@ -135,9 +138,9 @@ namespace klibrary::linear_algebra {
                     for(SizeT i = 0; i < N; ++i) {
                         for(SizeT c = 0; c < N; ++c) {
                             if constexpr(IsMultiplicationDefined<ElemT, ElemT_R>) {
-                                result.matrix_.at(r * N + c) += static_cast<ElemT>((*this).at(r * N + i) * matrix.at(i * N + c));
+                                result.matrix_[r * N + c] += static_cast<ElemT>((*this)[r * N + i] * matrix[i * N + c]);
                             } else {
-                                result.matrix_.at(r * N + c) += (*this).at(r * N + i) * static_cast<ElemT>(matrix.at(i * N + c));
+                                result.matrix_[r * N + c] += (*this)[r * N + i] * static_cast<ElemT>(matrix[i * N + c]);
                             }
                         }
                     }
@@ -151,9 +154,9 @@ namespace klibrary::linear_algebra {
 
                 for(SizeT i = 0; i < Rows * Cols; ++i) {
                     if constexpr(IsMultiplicationDefined<ElemT, ScalarType>) {
-                        this->matrix_.at(i) = static_cast<ElemT>(this->matrix_.at(i) * scalar);
+                        this->matrix_[i] = static_cast<ElemT>(this->matrix_[i] * scalar);
                     } else {
-                        this->matrix_.at(i) *= static_cast<ElemT>(scalar);
+                        this->matrix_[i] *= static_cast<ElemT>(scalar);
                     }
                 }
                 return (*this);
@@ -165,9 +168,9 @@ namespace klibrary::linear_algebra {
 
                 for(SizeT i = 0; i < Rows * Cols; ++i) {
                     if constexpr(IsDivisionDefined<ElemT, ScalarType>) {
-                        this->matrix_.at(i) = static_cast<ElemT>(this->matrix_.at(i) / scalar);
+                        this->matrix_[i] = static_cast<ElemT>(this->matrix_[i] / scalar);
                     } else {
-                        this->matrix_.at(i) /= static_cast<ElemT>(scalar);
+                        this->matrix_[i] /= static_cast<ElemT>(scalar);
                     }
                 }
                 return (*this);
