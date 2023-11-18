@@ -80,7 +80,26 @@ namespace klibrary::linear_algebra {
             constexpr MatrixBaseShape shape() const noexcept {
                 return MatrixBaseShape(Rows, Cols);
             }
-
+            void swap_rows(const SizeT& r1, const SizeT& r2) {
+                assert(r1 < Rows && r2 < Rows);
+                std::array<ElemT, Cols> temp;
+                auto r1_begin = std::next(this->matrix_.begin(), r1 * Cols);
+                auto r2_begin = std::next(this->matrix_.begin(), r2 * Cols);
+                auto r1_end = (r1 == Rows - 1) ? this->matrix_.end() : std::next(this->matrix_.begin(), (r1 + 1) * Cols);
+                auto r2_end = (r2 == Rows - 1) ? this->matrix_.end() : std::next(this->matrix_.begin(), (r2 + 1) * Cols);
+                
+                std::move(r1_begin, r1_end, temp.begin());
+                std::move(r2_begin, r2_end, r1_begin);
+                std::move(temp.begin(), temp.end(), r2_begin);
+                return;
+            }
+            void swap_cols(const SizeT& c1, const SizeT& c2) {
+                assert(c1 < Cols && c2 < Cols);
+                for(SizeT r = 0; r < Rows; ++r) {
+                    std::swap(this->matrix_.at(r * Cols + c1), this->matrix_.at(r * Cols + c2));
+                }
+                return;
+            }
             template <class ElemT_R, SizeT Rows_R, SizeT Cols_R>
             auto& operator+=(const StaticMatrixBase<ElemT_R, Rows_R, Cols_R>& matrix) {
                 static_assert(Rows == Rows_R);
@@ -152,27 +171,6 @@ namespace klibrary::linear_algebra {
                     }
                 }
                 return (*this);
-            }
-
-            void swap_rows(const SizeT& r1, const SizeT& r2) {
-                assert(r1 < Rows && r2 < Rows);
-                std::array<ElemT, Cols> temp;
-                auto r1_begin = std::next(this->matrix_.begin(), r1 * Cols);
-                auto r2_begin = std::next(this->matrix_.begin(), r2 * Cols);
-                auto r1_end = (r1 == Rows - 1) ? this->matrix_.end() : std::next(this->matrix_.begin(), (r1 + 1) * Cols);
-                auto r2_end = (r2 == Rows - 1) ? this->matrix_.end() : std::next(this->matrix_.begin(), (r2 + 1) * Cols);
-                
-                std::move(r1_begin, r1_end, temp.begin());
-                std::move(r2_begin, r2_end, r1_begin);
-                std::move(temp.begin(), temp.end(), r2_begin);
-                return;
-            }
-            void swap_cols(const SizeT& c1, const SizeT& c2) {
-                assert(c1 < Cols && c2 < Cols);
-                for(SizeT r = 0; r < Rows; ++r) {
-                    std::swap(this->matrix_.at(r * Cols + c1), this->matrix_.at(r * Cols + c2));
-                }
-                return;
             }
     };
     template <class ElemT, SizeT Rows, SizeT Cols>

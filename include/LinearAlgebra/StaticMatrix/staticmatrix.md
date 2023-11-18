@@ -152,11 +152,29 @@ std::ostream& operator<<(std::ostream& out, const StaticMatrixBase& input_matrix
 ### 関数
 
 ```cpp
-void swap_rows(const SizeT& r1, const SizeT& r2);                                       // (1)
-void swap_cols(const SizeT& c1, const SizeT& c2);                                       // (2)
+const ElemT& at(const SizeT& i) const;                                                  // (1)
+constexpr MatrixBaseShape shape() const noexcept;                                       // (2)
+void swap_rows(const SizeT& r1, const SizeT& r2);                                       // (3)
+void swap_cols(const SizeT& c1, const SizeT& c2);                                       // (4)
 ```
 
-- (1) 第`r1`行と第`r2`行を入れ替える
-- (2) 第`c1`列と第`c2`列を入れ替える
+- (1) 行列を1次元配列形式でみた際の変更不可能な要素を返す
+- (2) 行列の形を取得する
+- (3) 第`r1`行と第`r2`行を入れ替える
+- (4) 第`c1`列と第`c2`列を入れ替える
 
 行入れ替えと列入れ替えは約4倍程列入れ替えの方が遅い。
+
+
+## BasicTransforms
+
+`StaticMatrixBase`をpublic継承する。
+基本的な行列変形に関する関数が定義されている。
+
+```cpp
+static auto Transpose(const StaticMatrixBasicTransforms& input);                        // (1)
+auto transpose();                                                                       // (2)
+```
+
+- (1) `input`の転置行列を返す
+- (2) `*this`の転置を取り、これを返す
