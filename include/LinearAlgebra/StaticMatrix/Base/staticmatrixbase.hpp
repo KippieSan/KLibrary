@@ -183,7 +183,7 @@ namespace klibrary::linear_algebra {
     template <class ElemT, SizeT Rows, SizeT Cols>
     auto operator-(const StaticMatrixBase<ElemT, Rows, Cols>& matrix) {
         auto tmp = matrix;
-        tmp *= -1;
+        tmp *= ElemT(-1);
         return tmp;
     }
     template <class ElemT_L, SizeT Rows_L, SizeT Cols_L, class ElemT_R, SizeT Rows_R, SizeT Cols_R>
@@ -217,8 +217,25 @@ namespace klibrary::linear_algebra {
         const StaticMatrixBase<ElemT_L, Rows_L, Cols_L>& lhs,
         const StaticMatrixBase<ElemT_R, Rows_R, Cols_R>& rhs
     ) {
-        auto tmp = rhs;
-        return lhs + (-tmp);
+        static_assert(Rows_L == Rows_R && Cols_L == Cols_R);
+        static_assert(HasCommonTypeWith<ElemT_L, ElemT_R>);
+
+        using CommonType = CommonTypeOf<ElemT_L, ElemT_R>;
+
+        constexpr SizeT Rows = Rows_L;
+        constexpr SizeT Cols = Cols_L;
+        StaticMatrixBase<CommonType, Rows, Cols> result;
+        for(SizeT r = 0; r < Rows; ++r) {
+            for(SizeT c = 0; c < Cols; ++c) {
+                if constexpr(IsAdditionDefined<ElemT_L, ElemT_R>) {
+                    result(r, c) = static_cast<CommonType>(lhs(r, c) - rhs(r, c));
+                } else {
+                    static_assert(IsAdditionDefined<CommonType, CommonType>);
+                    result(r, c) = static_cast<CommonType>(lhs(r, c)) - static_cast<CommonType>(rhs(r, c));
+                }
+            }
+        }
+        return result;
     }
     template <class ElemT_L, SizeT Rows_L, SizeT Cols_L, class ElemT_R, SizeT Rows_R, SizeT Cols_R>
     auto operator*(
