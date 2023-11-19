@@ -150,7 +150,7 @@ namespace klibrary::linear_algebra {
             }
             template <class ScalarType>
             auto& operator*=(const ScalarType& scalar) {
-                static_assert(std::convertible_to<ScalarType, ElemT>);
+                static_assert(IsConvertibleTo<ScalarType, ElemT>);
 
                 for(SizeT i = 0; i < Rows * Cols; ++i) {
                     if constexpr(IsMultiplicationDefined<ElemT, ScalarType>) {
@@ -163,8 +163,8 @@ namespace klibrary::linear_algebra {
             }
             template <class ScalarType>
             auto& operator/=(const ScalarType& scalar) {
-                static_assert(std::convertible_to<ScalarType, ElemT>);
-                assert(scalar != ScalarType());
+                static_assert(IsConvertibleTo<ScalarType, ElemT>);
+                assert(scalar != ScalarType() && static_cast<ElemT>(scalar) != ElemT());
 
                 for(SizeT i = 0; i < Rows * Cols; ++i) {
                     if constexpr(IsDivisionDefined<ElemT, ScalarType>) {
