@@ -8,13 +8,13 @@ namespace klibrary::linear_algebra {
         public:
             using StaticMatrixBase<ElemT, Rows, Cols>::StaticMatrixBase;
 
-            static StaticMatrixBasicMatrices Zero() {
+            static auto Zero() {
                 return StaticMatrixBasicMatrices();
             }
-            static StaticMatrixBasicMatrices One() {
+            static auto One() {
                 return StaticMatrixBasicMatrices(ElemT(1));
             }
-            static StaticMatrixBasicMatrices I() {
+            static auto I() {
                 static_assert(Rows == Cols);
                 StaticMatrixBasicMatrices<ElemT, Rows, Cols> identity_matrix;
                 for(SizeT i = 0; i < Rows; ++i) {
@@ -22,7 +22,7 @@ namespace klibrary::linear_algebra {
                 }
                 return identity_matrix;
             }
-            static StaticMatrixBasicMatrices Scalar(const ElemT& a = ElemT()) {
+            static auto Scalar(const ElemT& a = ElemT()) {
                 static_assert(Rows == Cols);
                 StaticMatrixBasicMatrices<ElemT, Rows, Cols> scalar_matrix;
                 for(SizeT i = 0; i < Rows; ++i) {
@@ -30,7 +30,7 @@ namespace klibrary::linear_algebra {
                 }
                 return scalar_matrix;
             }
-            static StaticMatrixBasicMatrices Diag(std::initializer_list<ElemT>&& elements_initializer_list) {
+            static auto Diag(std::initializer_list<ElemT>&& elements_initializer_list) {
                 static_assert(Rows == Cols);
                 assert(elements_initializer_list.size() == Rows);
                 StaticMatrixBasicMatrices<ElemT, Rows, Cols> diagonal_matrix;
@@ -41,7 +41,7 @@ namespace klibrary::linear_algebra {
                 }
                 return diagonal_matrix;
             }
-            static StaticMatrixBasicMatrices Diag(const Array<ElemT, Rows>& elements_array) {
+            static auto Diag(const Array<ElemT, Rows>& elements_array) {
                 static_assert(Rows == Cols);
                 assert(elements_array.size() == Rows);
                 StaticMatrixBasicMatrices<ElemT, Rows, Cols> diagonal_matrix;
