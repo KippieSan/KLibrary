@@ -227,10 +227,10 @@ namespace klibrary::linear_algebra {
         StaticMatrixBase<CommonType, Rows, Cols> result;
         for(SizeT r = 0; r < Rows; ++r) {
             for(SizeT c = 0; c < Cols; ++c) {
-                if constexpr(IsAdditionDefined<ElemT_L, ElemT_R>) {
+                if constexpr(IsSubtractionDefined<ElemT_L, ElemT_R>) {
                     result(r, c) = static_cast<CommonType>(lhs(r, c) - rhs(r, c));
                 } else {
-                    static_assert(IsAdditionDefined<CommonType, CommonType>);
+                    static_assert(IsSubtractionDefined<CommonType, CommonType>);
                     result(r, c) = static_cast<CommonType>(lhs(r, c)) - static_cast<CommonType>(rhs(r, c));
                 }
             }
