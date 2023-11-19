@@ -1,7 +1,7 @@
 #ifndef staticmatrix_basic_transforms_hpp
 #define staticmatrix_basic_transforms_hpp
 #include "./../AliasAndConcepts/staticmatrix_alias_and_concepts.hpp"
-#include "./../Base/staticmatrixbase.hpp"
+#include "./../Base/staticmatrix_base.hpp"
 namespace klibrary::linear_algebra {
     template <class ElemT, SizeT Rows, SizeT Cols>
     class StaticMatrixBasicTransforms : public StaticMatrixBase<ElemT, Rows, Cols> {
