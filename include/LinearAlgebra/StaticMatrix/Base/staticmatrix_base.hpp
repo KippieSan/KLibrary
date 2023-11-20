@@ -79,7 +79,14 @@ namespace klibrary::linear_algebra {
             const ElemT& operator[](const SizeT& i) const {
                 return this->matrix_[i];
             }
+            ElemT& operator[](const SizeT& i) {
+                return this->matrix_[i];
+            }
             const ElemT& at(const SizeT& i) const {
+                assert(i < Rows * Cols);
+                return this->matrix_[i];
+            }
+            ElemT& at(const SizeT& i) {
                 assert(i < Rows * Cols);
                 return this->matrix_[i];
             }

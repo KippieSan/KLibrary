@@ -170,9 +170,11 @@ ElemT& operator()(const SizeT& r, const SizeT& c);                              
 
 ```cpp
 const ElemT& operator[](const SizeT& i) const;                                          // (1)
+ElemT& operator[](const SizeT& i);                                                      // (2)
 ```
 
-- (1) `this->matrix_[i];`を返す (境界チェックを行わない)
+- (1) 行列を1次元配列形式でみた際の変更不可能な要素を返す (境界チェックを行わない)
+- (2) 行列を1次元配列形式でみた際の変更可能な要素を返す (境界チェックを行わない)
 
 #### 出力演算子
 
@@ -186,15 +188,17 @@ std::ostream& operator<<(std::ostream& out, const StaticMatrixBase& input_matrix
 
 ```cpp
 const ElemT& at(const SizeT& i) const;                                                  // (1)
-constexpr MatrixBaseShape shape() const noexcept;                                       // (2)
-void swap_rows(const SizeT& r1, const SizeT& r2);                                       // (3)
-void swap_cols(const SizeT& c1, const SizeT& c2);                                       // (4)
+ElemT& at(const SizeT& i);                                                              // (2)
+constexpr MatrixBaseShape shape() const noexcept;                                       // (3)
+void swap_rows(const SizeT& r1, const SizeT& r2);                                       // (4)
+void swap_cols(const SizeT& c1, const SizeT& c2);                                       // (5)
 ```
 
-- (1) 行列を1次元配列形式でみた際の変更不可能な要素を返す
-- (2) 行列の形を取得する
-- (3) 第`r1`行と第`r2`行を入れ替える
-- (4) 第`c1`列と第`c2`列を入れ替える
+- (1) 行列を1次元配列形式でみた際の変更不可能な要素を返す (境界チェックを行う)
+- (2) 行列を1次元配列形式でみた際の変更可能な要素を返す (境界チェックを行う)
+- (3) 行列の形を取得する
+- (4) 第`r1`行と第`r2`行を入れ替える
+- (5) 第`c1`列と第`c2`列を入れ替える
 
 行入れ替えと列入れ替えは約4倍程列入れ替えの方が遅い。
 
