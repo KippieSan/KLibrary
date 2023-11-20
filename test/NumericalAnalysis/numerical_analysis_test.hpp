@@ -1,4 +1,4 @@
-#include <gtest/gtest.h>
+﻿#include <gtest/gtest.h>
 #include "../../include/NumericalAnalysis/numerical_differentiation.hpp"
 #include "../../include/NumericalAnalysis/approximation_algorithm.hpp"
 #include "../../include/NumericalAnalysis/constants.hpp"

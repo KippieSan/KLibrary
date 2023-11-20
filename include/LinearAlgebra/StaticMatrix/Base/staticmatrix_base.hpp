@@ -1,4 +1,4 @@
-#ifndef staticmatrix_base_hpp
+﻿#ifndef staticmatrix_base_hpp
 #define staticmatrix_base_hpp
 #include "staticmatrix_base_shape.hpp"
 #include "./../AliasAndConcepts/staticmatrix_alias_and_concepts.hpp"

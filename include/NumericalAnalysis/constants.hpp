@@ -1,4 +1,4 @@
-#ifndef constants
+﻿#ifndef constants
 #define constants
 #include <cstddef>
 #include <numbers>

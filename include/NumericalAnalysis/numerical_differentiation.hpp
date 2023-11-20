@@ -1,4 +1,4 @@
-#ifndef numerical_differentiation
+﻿#ifndef numerical_differentiation
 #define numerical_differentiation
 #include <functional>
 #include "constants.hpp"
