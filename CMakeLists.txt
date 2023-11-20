@@ -1,5 +1,6 @@
 cmake_minimum_required(VERSION 3.27)
 set(CMAKE_CXX_STANDARD 23)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 project(unit_test CXX)
 
 include(FetchContent)
