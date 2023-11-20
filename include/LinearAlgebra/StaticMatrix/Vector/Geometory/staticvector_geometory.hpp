@@ -16,7 +16,7 @@ namespace klibrary::linear_algebra {
 
             template <FloatingPoint FPType = DefaultFPType>
             FPType norm(const std::optional<SizeT>& p = 2) const {
-                if(p == Infinity<SizeT> || p == 0) {
+                if(p == Infinity || p.value() == 0) {
                     FPType max = std::numeric_limits<FPType>::min();
                     for(SizeT i = 0; i < Rows * Cols; ++i) {
                         max = (max < (*this)[i]) ? (*this)[i] : max;
@@ -28,25 +28,25 @@ namespace klibrary::linear_algebra {
                 static_assert(HasGlobalPow<FPType> || HasMemberPow<FPType>);
                 static_assert(IsConvertibleTo<SizeT, FPType>);
 
-                FPType result;
+                auto result = FPType();
                 std::function<FPType(SizeT)> f;
                 if constexpr(HasGlobalAbs<ElemT>) {
                     if constexpr(HasGlobalPow<FPType>) {
-                        f = [&](const SizeT& i){ return pow(abs((*this)[i]), static_cast<FPType>(p)); };
+                        f = [&](const SizeT& i){ return pow(abs((*this)[i]), static_cast<FPType>(p.value())); };
                     } else {
-                        f = [&](const SizeT& i){ return abs((*this)[i]).pow(static_cast<FPType>(p)); };
+                        f = [&](const SizeT& i){ return abs((*this)[i]).pow(static_cast<FPType>(p.value())); };
                     }
                 } else {
                     if constexpr(HasGlobalPow<FPType>) {
-                        f = [&](const SizeT& i){ return pow(((*this)[i]).abs(), static_cast<FPType>(p)); };
+                        f = [&](const SizeT& i){ return pow(((*this)[i]).abs(), static_cast<FPType>(p.value())); };
                     } else {
-                        f = [&](const SizeT& i){ return (((*this)[i]).abs()).pow(static_cast<FPType>(p)); }
+                        f = [&](const SizeT& i){ return (((*this)[i]).abs()).pow(static_cast<FPType>(p.value())); };
                     }
                 }
                 for(SizeT i = 0; i < Rows * Cols; ++i) {
                     result += f(i);
                 }
-                switch(p) {
+                switch(p.value()) {
                 case 1:
                     return result;
                 case 2:
@@ -57,8 +57,51 @@ namespace klibrary::linear_algebra {
                     }
                     [[fallthrough]];
                 default:
-                    return pow(result, static_cast<FPType>(1.0) / static_cast<FPType>(p));
+                    return pow(result, static_cast<FPType>(1.0) / static_cast<FPType>(p.value()));
                 }
+            }
+
+            template <class ElemT_R, SizeT Rows_R, SizeT Cols_R>
+            auto dot(const StaticVectorGeometory<ElemT_R, Rows_R, Cols_R>& rhs) {
+                static_assert(Rows == Rows_R && Cols == Cols_R);
+                static_assert(HasCommonTypeWith<ElemT, ElemT_R>);
+
+                using CommonType = CommonTypeOf<ElemT, ElemT_R>;
+                
+                auto result = CommonType();
+                for(SizeT i = 0; i < Rows * Cols; ++i) {
+                    if constexpr(IsMultiplicationDefined<ElemT, ElemT_R>) {
+                        result += static_cast<CommonType>((*this)[i] * rhs[i]);
+                    } else {
+                        static_assert(IsMultiplicationDefined<CommonType, CommonType>);
+                        result += static_cast<CommonType>((*this)[i]) * static_cast<CommonType>(rhs[i]);
+                    }
+                }
+                return result;
+            }
+
+            template <class ElemT_R, SizeT Rows_R, SizeT Cols_R>
+            auto cross(const StaticVectorGeometory<ElemT_R, Rows_R, Cols_R>& rhs) {
+                static_assert(Rows == Rows_R && Cols == Cols_R);
+                static_assert(Rows == 3 || Cols == 3);
+                static_assert(HasCommonTypeWith<ElemT, ElemT_R>);
+
+                using CommonType = CommonTypeOf<ElemT, ElemT_R>;
+
+                auto result = StaticVectorGeometory<CommonType, Rows, Cols>();
+
+                for(SizeT i = 0; i < Rows * Cols; ++i) {
+                    const SizeT j = (i + 1) % 3;
+                    const SizeT k = (i + 2) % 3;
+                    if constexpr(IsMultiplicationDefined<ElemT, ElemT_R> && IsSubtractionDefined<ElemT, ElemT_R>) {
+                        result[i] = static_cast<CommonType>((*this)[j] * rhs[k] - (*this)[k] * rhs[j]);
+                    } else {
+                        result[i] =
+                            static_cast<CommonType>((*this)[j]) * static_cast<CommonType>(rhs[k]) -
+                            static_cast<CommonType>((*this)[k]) * static_cast<CommonType>(rhs[j]);
+                    }
+                }
+                return result;
             }
     };
 }

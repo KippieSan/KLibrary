@@ -79,7 +79,6 @@ namespace klibrary::linear_algebra::alias_and_concepts {
 }
 // ユーザーが使用可能な型やコンセプト
 namespace klibrary::linear_algebra {
-    template <class T>
-    using Infinity = std::optional<T>::nullopt_t;
+    constexpr std::nullopt_t Infinity = std::nullopt;
 }
 #endif // staticmatrix_alias_and_concepts_hpp

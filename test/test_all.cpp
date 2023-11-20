@@ -3,3 +3,4 @@
 #include "./LinearAlgebra/StaticMatrix/staticmatrix_basic_transfrms_test.hpp"
 #include "./LinearAlgebra/StaticMatrix/staticmatrix_basic_matrices_test.hpp"
 #include "./LinearAlgebra/StaticMatrix/Vector/staticvector_base_test.hpp"
+#include "./LinearAlgebra/StaticMatrix/Vector/staticvector_geometory_test.hpp"
