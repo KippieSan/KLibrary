@@ -2,6 +2,9 @@
 #define staticmatrix_basic_transforms_hpp
 #include "./../AliasAndConcepts/staticmatrix_alias_and_concepts.hpp"
 #include "./../Base/staticmatrix_base.hpp"
+namespace {
+    using namespace klibrary::linear_algebra::alias_and_concepts;
+}
 namespace klibrary::linear_algebra {
     template <class ElemT, SizeT Rows, SizeT Cols>
     class StaticMatrixBasicTransforms : public StaticMatrixBase<ElemT, Rows, Cols> {

@@ -6,6 +6,9 @@
 #include <cassert>
 #include <iostream>
 #include <concepts>
+namespace {
+    using namespace klibrary::linear_algebra::alias_and_concepts;
+}
 namespace klibrary::linear_algebra {
     template <class ElemT, SizeT Rows, SizeT Cols>
     class StaticMatrixBase {
