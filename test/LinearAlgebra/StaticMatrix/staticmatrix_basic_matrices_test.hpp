@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
 #include <array>
 #include <iostream>
-#include "./../../include/LinearAlgebra/StaticMatrix/BasicMatrices/staticmatrix_basic_matrices.hpp"
+#include "./../../../include/LinearAlgebra/StaticMatrix/BasicMatrices/staticmatrix_basic_matrices.hpp"
 namespace {
     using namespace klibrary::linear_algebra;
 }
