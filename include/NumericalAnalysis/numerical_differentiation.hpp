@@ -88,6 +88,8 @@ namespace numerical_analysis {
                 case Type::SevenPoints:
                     return seven_points(x);
                     break;
+                default:
+                    return x;
                 }
             }
     };
