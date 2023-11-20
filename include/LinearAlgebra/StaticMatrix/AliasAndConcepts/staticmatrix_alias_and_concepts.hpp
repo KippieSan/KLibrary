@@ -6,6 +6,9 @@
 namespace klibrary::linear_algebra {
     // 添え字に使用する型の定義
     using SizeT = std::size_t;
+    // 浮動小数点型の定義
+    template <class T>
+    concept FloatingPoint = std::is_floating_point_v<T>;
     // 配列型の定義
     template <class ElemT, SizeT size>
     using Array = std::array<ElemT, size>;
