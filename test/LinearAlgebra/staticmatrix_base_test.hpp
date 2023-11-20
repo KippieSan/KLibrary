@@ -5,7 +5,7 @@
 namespace {
     using namespace klibrary::linear_algebra;
 }
-TEST(LinearAlgebraTest, StaticMatrixBaseConstructorTest) {
+TEST(LinearAlgebraStaticMatrixBaseTest, ConstructorTest) {
     StaticMatrixBase<int, 3, 3> dm1;
     StaticMatrixBase<int, 4, 5> cm1(5);
     StaticMatrixBase<int, 3, 3> ini_m1 = {{1, 2, 5}, {8, 10, 2}, {4, 4, 4}};
@@ -50,7 +50,7 @@ TEST(LinearAlgebraTest, StaticMatrixBaseConstructorTest) {
         assert(copy_m2.at(i) == copy_m2_test[i]);
     }
 }
-TEST(LinearAlgebraTest, StaticMatrixBaseAssignmentOperatorTest) {
+TEST(LinearAlgebraStaticMatrixBaseTest, AssignmentOperatorTest) {
     StaticMatrixBase<int, 3, 3>       m1 = {1, 2, 3, 4, 5, 6, 7, 8, 9};
     StaticMatrixBase<int, 3, 3>       m2 = {9, 8, 7, 6, 5, 4, 3, 2, 1};
     StaticMatrixBase<double, 3, 3>    m3 = {9, 8, 7, 6, 5, 4, 3, 2, 1};
@@ -77,7 +77,7 @@ TEST(LinearAlgebraTest, StaticMatrixBaseAssignmentOperatorTest) {
         assert(m1.at(i) == m4.at(i));
     }
 }
-TEST(LinearAlgebraTest, StaticMatrixBaseOperatorTest) {
+TEST(LinearAlgebraStaticMatrixBaseTest, OperatorTest) {
     StaticMatrixBase<int, 2, 3>     m1 = {1, 2, 3, 4, 5, 6};
     StaticMatrixBase<double, 2, 3>  m2 = {1, 2, 3, 4, 5, 6};
     StaticMatrixBase<double, 2, 3>  m3 = {2, 4, 6, 8, 10, 12};
@@ -110,7 +110,7 @@ TEST(LinearAlgebraTest, StaticMatrixBaseOperatorTest) {
         assert(mul4.at(i) == m2.at(i));
     }
 }
-TEST(LinearAlgebraTest, StaticMatrixBaseSwapTest) {
+TEST(LinearAlgebraStaticMatrixBaseTest, SwapTest) {
     // swap_colsはswap_rowsよりも4倍ほど遅い
     StaticMatrixBase<int, 3, 5> a = {{1, 2, 3, 4, 5}, {2, 3, 4, 5, 6}, {6, 7, 8, 9, 0}};
     StaticMatrixBase<int, 3, 5> a_swap_rows_test = {{6, 7, 8, 9, 0}, {2, 3, 4, 5, 6}, {1, 2, 3, 4, 5}};

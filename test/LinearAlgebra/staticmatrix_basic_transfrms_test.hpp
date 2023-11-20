@@ -5,7 +5,7 @@
 namespace {
     using namespace klibrary::linear_algebra;
 }
-TEST(LinearAlgebraTest, StaticMatrixBasicTransformsConstructorTest) {
+TEST(LinearAlgebraStaticMatrixBasicTransformsTest, ConstructorTest) {
     StaticMatrixBasicTransforms<int, 3, 3> dm1;
     StaticMatrixBasicTransforms<int, 4, 5> cm1(5);
     StaticMatrixBasicTransforms<int, 3, 3> ini_m1 = {{1, 2, 3}, {2, 3, 4}, {3, 4, 5}};
@@ -50,7 +50,7 @@ TEST(LinearAlgebraTest, StaticMatrixBasicTransformsConstructorTest) {
         assert(copy_m2.at(i) == copy_m2_test[i]);
     }
 }
-TEST(LinearAlgebraTest, StaticMatrixBasicTransformsTranposeTest) {
+TEST(LinearAlgebraStaticMatrixBasicTransformsTest, TranposeTest) {
     StaticMatrixBasicTransforms<int, 4, 3> m1 = {{1, 2, 3}, {6, 7, 8}, {4, 5, 6}, {9, 8, 7}};
     std::array<int, 12> m1_test = {1, 6, 4, 9, 2, 7, 5, 8, 3, 8, 6, 7};
     StaticMatrixBasicTransforms<int, 3, 3> m2 = {{4, 5, 6}, {1, 2, 3}, {9, 8, 7}};

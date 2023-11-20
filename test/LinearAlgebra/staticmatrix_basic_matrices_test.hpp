@@ -5,7 +5,7 @@
 namespace {
     using namespace klibrary::linear_algebra;
 }
-TEST(LinearAlgebraTest, StaticMatrixBasicMatricesConstructorTest) {
+TEST(LinearAlgebraStaticMatrixBasicMatricesTest, ConstructorTest) {
     StaticMatrixBasicMatrices<int, 3, 3> dm1;
     StaticMatrixBasicMatrices<int, 4, 5> cm1(5);
     StaticMatrixBasicMatrices<int, 3, 3> ini_m1 = {{1, 2, 3}, {2, 3, 4}, {3, 4, 5}};
@@ -50,7 +50,7 @@ TEST(LinearAlgebraTest, StaticMatrixBasicMatricesConstructorTest) {
         assert(copy_m2.at(i) == copy_m2_test[i]);
     }
 }
-TEST(LinearAlgebraTest, StaticMatrixBasicMatricesTest) {
+TEST(LinearAlgebraStaticMatrixBasicMatricesTest, Test) {
     const auto zero = StaticMatrixBasicMatrices<int, 5, 3>::Zero();
     const auto one = StaticMatrixBasicMatrices<int, 3, 2>::One();
     const auto eye = StaticMatrixBasicMatrices<int, 4, 4>::I();
