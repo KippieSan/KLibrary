@@ -1,4 +1,4 @@
-#ifndef approximation_algorithm
+﻿#ifndef approximation_algorithm
 #define approximation_algorithm
 #include <functional>
 #include <limits>

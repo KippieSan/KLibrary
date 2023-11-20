@@ -1,4 +1,4 @@
-#include <gtest/gtest.h>
+﻿#include <gtest/gtest.h>
 #include <array>
 #include <iostream>
 #include "./../../../include/LinearAlgebra/StaticMatrix/Base/staticmatrix_base.hpp"
